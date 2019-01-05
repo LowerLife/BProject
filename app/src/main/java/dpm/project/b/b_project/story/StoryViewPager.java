@@ -15,7 +15,7 @@ public class StoryViewPager extends ViewPager {
 
     public StoryViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.enabled = false;
+        this.enabled = true;
         try {
             Class<?> viewpager = ViewPager.class;
             Field scroller = viewpager.getDeclaredField("mScroller");

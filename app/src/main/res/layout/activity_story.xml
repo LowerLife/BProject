@@ -27,6 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@color/b_black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
@@ -41,6 +42,7 @@
         app:layout_constraintRight_toRightOf="@id/st_bottom_bg"
         app:layout_constraintTop_toTopOf="@id/st_bottom_bg"
         tools:text="NEXT" />
+
 
 
 </android.support.constraint.ConstraintLayout>

@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".story.StoryActivity"/>
         <activity android:name=".input.InputInfoActivity">
         </activity>
     </application>
