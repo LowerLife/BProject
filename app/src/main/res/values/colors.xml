@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="b_black">#1a191d</color>
+    <color name="edit_text_hint_color">#e9e9e9</color>
 </resources>
