@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".input.InputInfoActivity">
+    tools:context=".input.View.InputInfoActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -36,186 +36,171 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="98dp"
+        android:layout_marginTop="40dp"
         android:lineHeight="26sp"
-        android:text="안녕하세요"
+        android:text="안녕하세요!"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_input_underline"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toEndOf="@+id/info_input_text1"
+        app:layout_constraintTop_toBottomOf="@+id/info_input_underline"
+        app:srcCompat="@drawable/hello"/>
 
     <TextView
         android:id="@+id/info_input_text2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:lineHeight="26sp"
-        android:text="얼마안되는 너의"
+        android:text="쥐꼬리만큼 얼마되지않는 너의"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_input_text1"/>
 
     <View
         android:id="@+id/info_input_delete_line"
-        android:layout_width="120dp"
+        android:layout_width="230dp"
         android:layout_height="4dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="28dp"
         android:background="#e6003e"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/info_input_text1"/>
 
     <EditText
         android:id="@+id/info_input_monthly_salary"
-        android:layout_width="135dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:background="@null"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/edittext_cursor"
         android:ems="10"
+        android:hint="월급 실수령액"
         android:inputType="number"
         android:lineHeight="26sp"
         android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@+id/info_input_text2"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_text1"
-        tools:text="월급 실수령액"
-        tools:textColor="#888888"/>
-
-    <View
-        android:id="@+id/info_input_underline2"
-        android:layout_width="135dp"
-        android:layout_height="4dp"
-        android:layout_marginStart="156dp"
-        android:background="#1a191d"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_monthly_salary"/>
-
-    <TextView
-        android:id="@+id/info_input_text3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginTop="10dp"
-        android:lineHeight="26sp"
-        android:text="과"
-        android:textColor="#000000"
-        android:textSize="18sp"
+        android:textColorHint="@color/edit_text_hint_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toEndOf="@+id/info_input_monthly_salary"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_text1"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_input_text2"
+        tools:textColor="#888888"/>
 
     <TextView
         android:id="@+id/info_input_text4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:lineHeight="26sp"
-        android:text="회사"
+        android:text="회사에 들어 왔던 입사일"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_text2"/>
+        app:layout_constraintTop_toBottomOf="@+id/info_input_monthly_salary"/>
 
     <EditText
         android:id="@+id/info_input_enter_date"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:background="@null"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/edittext_cursor"
         android:ems="10"
+        android:hint="입사일"
         android:inputType="number|date"
         android:lineHeight="26sp"
         android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@+id/info_input_text4"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_text2"
-        tools:text="입사일"
-        tools:textColor="#888888"/>
-
-    <View
-        android:id="@+id/info_input_underline3"
-        android:layout_width="100dp"
-        android:layout_height="4dp"
-        android:layout_marginStart="72dp"
-        android:background="#1a191d"
+        android:textColorHint="@color/edit_text_hint_color"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_enter_date"/>
+        app:layout_constraintTop_toBottomOf="@+id/info_input_text4"
+        tools:textColor="#888888"/>
 
     <TextView
         android:id="@+id/info_input_text5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:lineHeight="26sp"
-        android:text="그리고"
+        android:text="이 세상에서 가장 행복한 월급일"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_text4"/>
+        app:layout_constraintTop_toBottomOf="@+id/info_input_enter_date"/>
 
     <EditText
         android:id="@+id/info_input_salary_date"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:background="@null"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/edittext_cursor"
         android:ems="10"
+        android:hint="31일"
         android:inputType="number"
         android:lineHeight="26sp"
         android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@+id/info_input_text5"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_text4"
-        tools:text="급여일"
-        tools:textColor="#888888"/>
-
-    <View
-        android:id="@+id/info_input_underline4"
-        android:layout_width="100dp"
-        android:layout_height="4dp"
-        android:layout_marginStart="88dp"
-        android:background="#1a191d"
+        android:textColorHint="@color/edit_text_hint_color"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_salary_date"/>
+        app:layout_constraintTop_toBottomOf="@+id/info_input_text5"
+        tools:textColor="#888888"/>
 
     <TextView
         android:id="@+id/info_input_text6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:lineHeight="26sp"
-        android:text="을 알려주세요 :)"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:lineHeight="26dp"
+        android:text="마지막으로 출퇴근 시간"
         android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/info_input_salary_date"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_text4"/>
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_input_salary_date"/>
 
-    <android.support.v7.widget.AppCompatButton
+    <EditText
+        android:id="@+id/info_input_quit_time"
         android:layout_width="0dp"
-        android:layout_height="214dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/input_info2"
-        app:layout_constraintBottom_toTopOf="@+id/input_info_bottom_bg"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_text5"/>
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/edittext_cursor"
+        android:ems="10"
+        android:hint="9시 30분 / 7시 30분"
+        android:inputType="time"
+        android:lineHeight="26sp"
+        android:singleLine="true"
+        android:textColorHint="@color/edit_text_hint_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_input_text6"/>
 
     <View
         android:id="@+id/input_info_bottom_bg"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="#1a191d"
+        android:background="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/input_info_bottom_btn"
+        android:id="@+id/input_info_complete_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -228,13 +213,13 @@
         tools:text="NEXT"/>
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="98dp"
-        app:layout_constraintStart_toEndOf="@+id/info_input_text1"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_underline"
-        app:srcCompat="@drawable/hello"/>
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info_input_quit_time"
+        app:srcCompat="@mipmap/img_4"/>
 
 </android.support.constraint.ConstraintLayout>

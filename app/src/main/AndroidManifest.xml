@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".input.InputInfoActivity">
+        <activity android:name=".input.View.InputInfoActivity"/>
+        <activity android:name=".input.View.DatePickerPopup">
+        </activity>
+        <activity android:name=".input.View.TimePickerPopup">
         </activity>
     </application>
 
