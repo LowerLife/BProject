@@ -27,6 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@color/b_black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
@@ -40,7 +41,13 @@
         app:layout_constraintBottom_toBottomOf="@id/st_bottom_bg"
         app:layout_constraintRight_toRightOf="@id/st_bottom_bg"
         app:layout_constraintTop_toTopOf="@id/st_bottom_bg"
-        tools:text="NEXT" />
+        tools:text="START" />
 
+    <android.support.constraint.Group
+        android:id="@+id/story_bottom_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="st_bottom_btn,st_bottom_bg"
+        android:visibility="invisible"/>
 
 </android.support.constraint.ConstraintLayout>

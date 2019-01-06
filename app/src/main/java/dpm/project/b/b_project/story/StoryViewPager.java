@@ -15,15 +15,15 @@ public class StoryViewPager extends ViewPager {
 
     public StoryViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.enabled = false;
-        try {
-            Class<?> viewpager = ViewPager.class;
-            Field scroller = viewpager.getDeclaredField("mScroller");
-            scroller.setAccessible(true);
-            scroller.set(this, new OwnScroller(getContext()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.enabled = true;
+//        try {
+////            Class<?> viewpager = ViewPager.class;
+////            Field scroller = viewpager.getDeclaredField("mScroller");
+////            scroller.setAccessible(true);
+////            scroller.set(this, new OwnScroller(getContext()));
+////        } catch (Exception e) {
+////            e.printStackTrace();
+////        }
     }
 
     @Override
