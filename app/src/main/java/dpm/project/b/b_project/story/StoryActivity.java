@@ -13,8 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dpm.project.b.b_project.R;
 import dpm.project.b.b_project.base.BaseActivity;
-import dpm.project.b.b_project.input.InputInfoActivity;
-import dpm.project.b.b_project.util.Log;
+import dpm.project.b.b_project.input.View.InputInfoActivity;
 
 public class StoryActivity extends BaseActivity {
 

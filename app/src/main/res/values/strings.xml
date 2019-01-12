@@ -4,9 +4,9 @@
     <string name="next">NEXT</string>
     <string name="start">START</string>
     <string name="b_life">B LIFE</string>
-    <string name="_1day">1DAY</string>
+    <string name="_1day">1 DAY</string>
+    <string name="_1month">1 MONTH</string>
     <string name="hourly_pay">HOURLY PAY</string>
-
-    <string name="main_day_time_str"><![CDATA[<font color=#ffffff>지옥의 회사에서 퇴근시간까지</font><br><font color=#e6003e>%s</font><font color=#ffffff> 남았어요.</font>]]></string>
-    <string name="main_day_buy"><![CDATA[<font color=#3e3e40>현재 돈으로 구매할 수 있는건 </font><font color=#ffffff>%s</font><font color=#3e3e40> 입니다.</font>]]></string>
+    <string name="monthly_pay">MONTHLY PAY</string>
+    <string name="d_day">%s일</string>
 </resources>

@@ -1,4 +1,4 @@
-package dpm.project.b.b_project.story;
+package dpm.project.b.b_project.main;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,17 +11,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import dpm.project.b.b_project.R;
+import dpm.project.b.b_project.util.Utils;
 
-public class StoryPagerAdapter extends PagerAdapter {
+public class MainViewPager extends PagerAdapter {
 
     private Context context;
     private LayoutInflater mInflater;
     private TypedArray layouts;
+    private Utils utils;
 
-    StoryPagerAdapter(Context context){
+    MainViewPager(Context context){
         this.context = context;
         mInflater = LayoutInflater.from(context);
-        layouts = context.getResources().obtainTypedArray(R.array.story_layout);
+        layouts = context.getResources().obtainTypedArray(R.array.main_layout);
+        utils = new Utils(context);
     }
 
     @Override
@@ -33,8 +36,12 @@ public class StoryPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View v = mInflater.inflate(layouts.getResourceId(position,0),container,false);
-        TextView tv = v.findViewById(R.id.st_text);
-        tv.setText(Html.fromHtml(context.getResources().getStringArray(R.array.story_text)[position]));
+        TextView timeText = v.findViewById(R.id.main_time);
+        TextView sectionText = v.findViewById(R.id.main_txt);
+        TextView payText = v.findViewById(R.id.main_pay);
+        String sectionStr = String.format(context.getResources().getStringArray(R.array.story_text)[position],utils.getWorkTime());
+        sectionText.setText(Html.fromHtml(sectionStr));
+
         container.addView(v);
         return v;
     }

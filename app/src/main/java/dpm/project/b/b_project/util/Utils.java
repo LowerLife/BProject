@@ -3,28 +3,38 @@ package dpm.project.b.b_project.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import okhttp3.internal.Util;
 
+import static dpm.project.b.b_project.util.Const.*;
+
 public class Utils {
 
     Context context;
     SharedPreferences sharedPreferences;
+    Calendar calendar;
+
     public Utils(Context context){
         this.context = context;
         sharedPreferences = context.getSharedPreferences("bproject",Context.MODE_PRIVATE);
+        calendar = new GregorianCalendar();
+        calendar.setTime(new Date());
+        calendar.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
     }
 
     public boolean isOffWork(){
-        String workTime = sharedPreferences.getString("worktime","1800");
+        String workTime = sharedPreferences.getString(WORK_TIME,"1800");
         SimpleDateFormat workTimeParse = new SimpleDateFormat("HHmm",Locale.KOREA);
         try {
-            long cur = workTimeParse.parse(workTimeParse.format(new Date())).getTime();
+            long cur = workTimeParse.parse(workTimeParse.format(calendar.getTime())).getTime();
             long req = workTimeParse.parse(workTime).getTime();
             return cur > req;
         } catch (Exception e) {
@@ -34,18 +44,40 @@ public class Utils {
     }
 
     public String getWorkTime(){
-        String workTime = sharedPreferences.getString("worktime","1800");
+        String workTime = sharedPreferences.getString(WORK_TIME,"1800");
         SimpleDateFormat workTimeFormat = new SimpleDateFormat("H시간mm분",Locale.KOREA);
         SimpleDateFormat workTimeParse = new SimpleDateFormat("HHmm",Locale.KOREA);
         workTimeFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         try {
-            long cur = new Date().getTime();
+            long cur = calendar.getTime().getTime();
             long req = workTimeParse.parse(workTime).getTime();
             return workTimeFormat.format(req - cur);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public String getDayPay(){
+        int monthlyPay = sharedPreferences.getInt(WORK_TIME,2000000);
+        int payInt = monthlyPay / calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        DecimalFormat myFormatter = new DecimalFormat("###,###");
+        return myFormatter.format(payInt);
+    }
+
+    public boolean isWeekend(){
+        switch (calendar.get(Calendar.DAY_OF_WEEK)){
+            case 1:
+                return true;
+            case 7:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public String getDday(){
+
     }
 
 }
