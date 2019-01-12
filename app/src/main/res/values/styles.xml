@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@android:color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+        
+        <item name="android:textViewStyle">@style/BLife_font</item>
+    </style>
+
+    <style name="BLife_font" parent="@android:style/Widget.DeviceDefault.TextView">
+        <item name="android:fontFamily">@font/anton</item>
     </style>
 
 </resources>

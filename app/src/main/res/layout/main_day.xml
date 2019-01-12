@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/b_black">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/main_day_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="19dp"
+        android:text="@string/b_life"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:background="@android:color/white"
+        app:layout_constraintLeft_toLeftOf="@id/main_day_title"
+        app:layout_constraintRight_toRightOf="@id/main_day_title"
+        app:layout_constraintTop_toBottomOf="@id/main_day_title" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/main_day_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:text="@string/_1day"
+        android:textColor="@android:color/white"
+        android:textSize="26sp"
+        app:layout_constraintLeft_toLeftOf="@id/main_day_title"
+        app:layout_constraintTop_toBottomOf="@id/main_day_title" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/hourly_pay"
+        android:textColor="#3e3e40"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="@id/main_day_title"
+        app:layout_constraintTop_toBottomOf="@id/main_day_txt" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/main_day_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="177dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/main_day_title"
+        app:layout_constraintTop_toBottomOf="@id/main_day_txt"
+        tools:text="지옥의 회사에서 퇴근시간까지\n1시간 40분 남았어요." />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/main_day_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:textColor="@android:color/white"
+        android:textSize="28sp"
+        app:layout_constraintLeft_toLeftOf="@id/main_day_title"
+        app:layout_constraintTop_toBottomOf="@id/main_day_time"
+        tools:text="23,369" />
+
+    <View
+        android:id="@+id/main_day_pay_line"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="32dp"
+        android:background="@android:color/white"
+        app:layout_constraintLeft_toLeftOf="@id/main_day_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_day_pay" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="78dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="24.3dp"
+        android:layout_marginEnd="27dp"
+        app:layout_constraintRight_toRightOf="@id/main_day_pay_line"
+        app:layout_constraintTop_toTopOf="@id/main_day_pay"
+        app:srcCompat="@drawable/main_day_line_draw" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="WON"
+        android:textColor="#3e3e40"
+        android:textSize="14sp"
+        app:layout_constraintRight_toRightOf="@id/main_day_pay_line"
+        app:layout_constraintTop_toBottomOf="@id/main_day_pay_line" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textColor="#3e3e40"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@id/main_day_title"
+        app:layout_constraintTop_toBottomOf="@id/main_day_pay_line"
+        tools:text="현재 돈으로 구매할 수 있는건 스타벅스 아메리카노 입니다."
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</android.support.constraint.ConstraintLayout>
