@@ -3,6 +3,7 @@
 
     <string name="next">NEXT</string>
     <string name="start">START</string>
+    <string name="b_life_underline"><u>B LIFE</u></string>
     <string name="b_life">B LIFE</string>
     <string name="_1day">1 DAY</string>
     <string name="_1month">1 MONTH</string>
