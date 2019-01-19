@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".main.MainActivity">
 
-    <dpm.project.b.b_project.main.VerticalViewPager
+    <me.kaelaela.verticalviewpager.VerticalViewPager
+        android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

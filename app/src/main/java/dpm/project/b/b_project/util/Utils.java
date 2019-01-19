@@ -20,11 +20,15 @@ public class Utils {
 
     Context context;
     SharedPreferences sharedPreferences;
+    SimpleDateFormat workTimeParse;
     Calendar calendar;
+    String workTime;
 
     public Utils(Context context){
         this.context = context;
         sharedPreferences = context.getSharedPreferences("bproject",Context.MODE_PRIVATE);
+        workTimeParse = new SimpleDateFormat("HHmmss",Locale.KOREA);
+        workTime = sharedPreferences.getString(WORK_TIME,"1800");
         calendar = new GregorianCalendar();
         calendar.setTime(new Date());
         calendar.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
@@ -44,9 +48,9 @@ public class Utils {
     }
 
     public String getWorkTime(){
-        String workTime = sharedPreferences.getString(WORK_TIME,"1800");
+        workTime = sharedPreferences.getString(WORK_TIME,"1800");
         SimpleDateFormat workTimeFormat = new SimpleDateFormat("H시간mm분",Locale.KOREA);
-        SimpleDateFormat workTimeParse = new SimpleDateFormat("HHmm",Locale.KOREA);
+        workTimeParse = new SimpleDateFormat("HHmm",Locale.KOREA);
         workTimeFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         try {
             long cur = calendar.getTime().getTime();
@@ -59,9 +63,18 @@ public class Utils {
     }
 
     public String getDayPay(){
+        calendar.setTime(new Date());
         int monthlyPay = sharedPreferences.getInt(WORK_TIME,2000000);
-        int payInt = monthlyPay / calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        long payInt = monthlyPay / calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         DecimalFormat myFormatter = new DecimalFormat("###,###");
+        try {
+            long cur = workTimeParse.parse(calendar.get(Calendar.HOUR)+""+calendar.get(Calendar.MINUTE)+""+ calendar.get(Calendar.SECOND)).getTime();
+            long req = workTimeParse.parse(workTime).getTime();
+            payInt = (long)(payInt * ((float)cur / req * 100) / 100);
+            Log.e(payInt+"");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return myFormatter.format(payInt);
     }
 

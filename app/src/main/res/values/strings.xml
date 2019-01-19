@@ -9,4 +9,6 @@
     <string name="hourly_pay">HOURLY PAY</string>
     <string name="monthly_pay">MONTHLY PAY</string>
     <string name="d_day">%s일</string>
+
+    <string name="buy_item"><![CDATA[<font color=#3e3e40>현재 돈으로 구매할 수 있는건 </font><font color=#ffffff>%s</font><font color=#3e3e40> 입니다.</font>]]></string>
 </resources>

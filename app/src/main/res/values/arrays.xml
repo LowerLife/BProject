@@ -15,7 +15,7 @@
     <string-array name="main_text">
         <item><![CDATA[<font color=#ffffff>지옥의 회사에서 퇴근시간까지</font><br><font color=#e6003e>%s</font><font color=#ffffff> 남았어요.</font>]]></item>
         <item><![CDATA[<font color=#1a191d>조금만 더 참아요 월급날까지</font><br><font color=#e6003e>%s</font><font color=#1a191d> 남았어요.</font>]]></item>
-        <item><![CDATA[<font color=#3e3e40>현재 돈으로 구매할 수 있는건 </font><font color=#ffffff>%s</font><font color=#3e3e40> 입니다.</font>]]></item>
+        <item><![CDATA[<font color=#1a191d>괜찮아요? 아픈데 없죠?</font><br><font color=#1a191d>연봉협상까지 </font><font color=#e6003e>%s</font><font color=#1a191d> 남았어요.</font>]]></item>
     </string-array>
 
     <array name="main_layout">
