@@ -1,8 +1,6 @@
 package dpm.project.b.b_project.input.View;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.support.v4.content.ContextCompat;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,10 +14,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnFocusChange;
 import dpm.project.b.b_project.R;
 import dpm.project.b.b_project.input.Presenter.InputInfoContract;
 import dpm.project.b.b_project.input.Presenter.InputInfoPresenter;
+import dpm.project.b.b_project.main.MainActivity;
 
 public class InputInfoActivity extends AppCompatActivity
         implements InputInfoContract.View{//, ObserverCallback{
@@ -33,7 +31,7 @@ public class InputInfoActivity extends AppCompatActivity
     @BindView(R.id.info_input_salary_date)
     TextView salaryDay;
     @BindView(R.id.info_input_quit_time)
-    TextView quitTime;
+    TextView workStartAndEndTime;
     @BindView(R.id.input_info_bottom_bg)
     View inputInfoBottomView;
     @BindView(R.id.input_info_complete_btn)
@@ -95,7 +93,7 @@ public class InputInfoActivity extends AppCompatActivity
         String salary = monthlySalary.getText().toString();
         String date = enterDate.getText().toString();
         String day = salaryDay.getText().toString();
-        String time = quitTime.getText().toString();
+        String time = workStartAndEndTime.getText().toString();
 
         if(salary.equals("")){
             toast("너의 월급은?");
@@ -117,7 +115,8 @@ public class InputInfoActivity extends AppCompatActivity
             return;
         }
 
-        presenter.inputData(salary, date, day, time);
+        Log.d("test",salary + " " + date + " " + day + " " + time);
+        presenter.inputData(getApplicationContext(), salary, date, day, time);
         onSuccess();
     }
 
@@ -141,7 +140,7 @@ public class InputInfoActivity extends AppCompatActivity
     @OnClick(R.id.info_input_enter_date)
     public void onEnterDateClick(){
 
-        DatePickerDialog.OnDateSetListener d = ((view, month, dayOfMonth, i2) -> {
+        PickerListener d = ((month, dayOfMonth, nullValue1, nullValue2) -> {
             enterDate.setText(month + "월 " + dayOfMonth +"일");
             Log.d("MonthDayPickerTest", "month = " + month + ", day = " + dayOfMonth);
         });
@@ -164,9 +163,9 @@ public class InputInfoActivity extends AppCompatActivity
 
     @OnClick(R.id.info_input_salary_date)
     public void onSalaryDateClick(){
-        DatePickerDialog.OnDateSetListener d = ((view, dayOfMonth, i1, i2) -> {
+        PickerListener d = ((dayOfMonth, nullValue1, nullValue2, nullValue3) -> {
             salaryDay.setText(dayOfMonth +"일");
-            Log.d("DayPickerTest", "month = " + dayOfMonth + ", day = " + dayOfMonth);
+            Log.d("DayPickerTest", "day = " + dayOfMonth);
         });
 
         DayPickerDialog pd = new DayPickerDialog();
@@ -187,20 +186,20 @@ public class InputInfoActivity extends AppCompatActivity
 
     @OnClick(R.id.info_input_quit_time)
     public void onQuitTimeClick(){
-        TimePickerDialog.OnTimeSetListener d = ((NULL, hour, minute) -> {
-            if(isTimeInputComplete){
-                time2 = hour + ":" + minute;
-                quitTime.setText(time1 + " / " + time2);
+        PickerListener d = ((hour1, minute1, hour2, minute2) -> {
+                time1 = hour1 + ":" + minute1;
+                time2 = hour2 + ":" + minute2;
+                workStartAndEndTime.setText(time1 + " / " + time2);
                 inputInfoBottomView.setVisibility(View.VISIBLE);
                 completeBtn.setVisibility(View.VISIBLE);
-            } else{
-                time1 = hour + ":" + minute;
-                isTimeInputComplete = true;
-            }
-            //Log.d("TimePickerTest", "hour = " + hour + ", minute = " + minute);
+
+            Log.d("TimePickerTest", "Work Start Hour = " + hour1 +
+                    ", Work Start minute = " + minute1 +
+                    ", Work End Hour = " + hour2 +
+                    ", Work End minute = " + minute2);
         });
 
-        TimePickerDialogg pd = new TimePickerDialogg();
+        WorkTimePickerDialog pd = new WorkTimePickerDialog();
         pd.setListener(d);
         pd.show(getSupportFragmentManager(), "TimePickerTest");
     }
@@ -210,7 +209,7 @@ public class InputInfoActivity extends AppCompatActivity
         if (!isQuitTime.get()) {
             viewObserver.modifyValue(isQuitTime, Boolean.FALSE);
         }
-        if (!quitTime.equals("")) {
+        if (!workStartAndEndTime.equals("")) {
             //presenter.validateExistEmail(email);
             viewObserver.modifyValue(isQuitTime, Boolean.TRUE);
         }
@@ -225,6 +224,7 @@ public class InputInfoActivity extends AppCompatActivity
     @Override
     public void onSuccess() {
         toast("님의 정보 저장완료!");
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

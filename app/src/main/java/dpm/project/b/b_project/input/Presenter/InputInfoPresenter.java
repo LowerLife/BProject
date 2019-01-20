@@ -1,13 +1,31 @@
 package dpm.project.b.b_project.input.Presenter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import dpm.project.b.b_project.util.Utils;
+
+import static dpm.project.b.b_project.util.Const.ENTER_DATE;
+import static dpm.project.b.b_project.util.Const.MONTHLY_PAY;
+import static dpm.project.b.b_project.util.Const.SALARY_DAY;
+import static dpm.project.b.b_project.util.Const.WORK_START_AND_END_AT;
+
 public class InputInfoPresenter
         implements InputInfoContract.Presenter{
 
     private InputInfoContract.View view;
 
     @Override
-    public void inputData(String monthlySalary, String enterDate, String salaryDay, String quitTime) {
-
+    public void inputData(Context context, String monthlySalary, String enterDate, String salaryDay, String workStartAndQuitTime) {
+        if (Utils.sharedPreferences == null) {
+            Utils.sharedPreferences = context.getSharedPreferences("bproject", Context.MODE_PRIVATE);
+        }
+        SharedPreferences.Editor editor = Utils.sharedPreferences.edit();
+        editor.putString(MONTHLY_PAY, monthlySalary);
+        editor.putString(ENTER_DATE, enterDate);
+        editor.putString(SALARY_DAY, salaryDay);
+        editor.putString(WORK_START_AND_END_AT, workStartAndQuitTime);
+        editor.commit();
     }
 
     @Override

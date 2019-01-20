@@ -19,7 +19,7 @@ import static dpm.project.b.b_project.util.Const.*;
 public class Utils {
 
     Context context;
-    SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
     SimpleDateFormat workTimeParse;
     Calendar calendar;
     String workTime;

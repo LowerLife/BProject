@@ -16,10 +16,11 @@ import dpm.project.b.b_project.R;
 
 public class DayPickerDialog extends DialogFragment {
 
-    private DatePickerDialog.OnDateSetListener listener;
+    //private DatePickerDialog.OnDateSetListener listener;
+    private PickerListener listener;
     public Calendar cal = Calendar.getInstance();
 
-    public void setListener(DatePickerDialog.OnDateSetListener listener) {
+    public void setListener(PickerListener listener) {
         this.listener = listener;
     }
 
@@ -41,7 +42,7 @@ public class DayPickerDialog extends DialogFragment {
         //btnCancel.setOnClickListener(view -> MonthDayPickerDialog.this.getDialog().cancel());
 
         btnConfirm.setOnClickListener(view -> {
-            listener.onDateSet(null, dayPicker.getValue(), 0, 0);
+            listener.onDataSet(String.valueOf(dayPicker.getValue()), "", "", "");
             DayPickerDialog.this.getDialog().cancel();
         });
 

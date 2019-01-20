@@ -10,25 +10,32 @@ import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import java.text.Format;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+
 import dpm.project.b.b_project.R;
 
-public class TimePickerDialogg extends DialogFragment {
+public class WorkTimePickerDialog extends DialogFragment {
 
-    private TimePickerDialog.OnTimeSetListener listener;
+    private PickerListener listener;
     private long now = System.currentTimeMillis();
     private Date date = new Date(now);
-    private SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+    SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
     private String getTime = sdf.format(date);
-    private boolean isComplete = false;
+    private boolean isStartTimeWritten = false;
 
-    public void setListener(TimePickerDialog.OnTimeSetListener listener) {
+    public void setListener(PickerListener listener) {
         this.listener = listener;
     }
 
     TextView btnConfirm;
     TextView timeOptionView;
+
+    private String workStartHour = "";
+    private String workStartMinute = "";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -43,28 +50,51 @@ public class TimePickerDialogg extends DialogFragment {
         final NumberPicker hourPicker = dialog.findViewById(R.id.picker_hour);
         final NumberPicker minutePicker = dialog.findViewById(R.id.picker_minute);
 
+
+
         btnConfirm.setOnClickListener(view -> {
-            if(isComplete != true){
-                listener.onTimeSet(null, hourPicker.getValue(), minutePicker.getValue());
-                isComplete = true;
+            if(!isStartTimeWritten){
+                workStartHour = String.valueOf(hourPicker.getValue());
+                workStartMinute = String.valueOf(minutePicker.getValue());
+                isStartTimeWritten = true;
                 btnConfirm.setText("OK");
                 timeOptionView.setText("퇴근시간");
             } else{
-                listener.onTimeSet(null, hourPicker.getValue(), minutePicker.getValue());
-                TimePickerDialogg.this.getDialog().cancel();
+                listener.onDataSet(
+                        workStartHour,
+                        workStartMinute,
+                        String.valueOf(hourPicker.getValue()),
+                        String.valueOf(minutePicker.getValue())
+                );
+                WorkTimePickerDialog.this.getDialog().cancel();
             }
         });
 
-        //최대, 최소값 설정
+        //Hour Picker
         hourPicker.setMinValue(1);
         hourPicker.setMaxValue(12);
+        hourPicker.setFormatter(i -> {
+            String num = String.valueOf(i);
+            if(i<10){
+                return "0"+num;
+            }
+            return num;
+        });
         //숫자 클릭시 editText 로 변경 제거
         hourPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         int hour = Integer.valueOf(getTime.split(":")[0]);
         hourPicker.setValue(hour);
 
-        minutePicker.setMinValue(00);
+        //Minute Picker
+        minutePicker.setMinValue(0);
         minutePicker.setMaxValue(59);
+        minutePicker.setFormatter(i -> {
+            String num = String.valueOf(i);
+            if(i<10){
+                return "0"+num;
+            }
+            return num;
+        });
         minutePicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         int minute = Integer.valueOf(getTime.split(":")[1]);
         minutePicker.setValue(minute);
