@@ -50,8 +50,6 @@ public class WorkTimePickerDialog extends DialogFragment {
         final NumberPicker hourPicker = dialog.findViewById(R.id.picker_hour);
         final NumberPicker minutePicker = dialog.findViewById(R.id.picker_minute);
 
-
-
         btnConfirm.setOnClickListener(view -> {
             if(!isStartTimeWritten){
                 workStartHour = String.valueOf(hourPicker.getValue());

@@ -16,4 +16,10 @@
         <item name="android:fontFamily">@font/anton</item>
     </style>
 
+    <style name="AllowButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:background">@mipmap/group</item>
+    </style>
+
 </resources>

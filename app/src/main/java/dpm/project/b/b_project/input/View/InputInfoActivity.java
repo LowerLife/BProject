@@ -44,7 +44,6 @@ public class InputInfoActivity extends AppCompatActivity
     private InputInfoPresenter presenter;
 
     private String time1, time2;
-    private boolean isTimeInputComplete = false;
 
     private AtomicBoolean isMonthlySalary;
     private AtomicBoolean isEnterDate;
@@ -119,12 +118,6 @@ public class InputInfoActivity extends AppCompatActivity
         presenter.inputData(getApplicationContext(), salary, date, day, time);
         onSuccess();
     }
-
-    //숫자 키패드
-    /*@OnClick(R.id.info_input_monthly_salary)
-    public void onMonthlySalaryClick(){
-
-    }*/
 
     /*@OnFocusChange(R.id.info_input_monthly_salary)
     public void monthlySalaryFocusChange() {
