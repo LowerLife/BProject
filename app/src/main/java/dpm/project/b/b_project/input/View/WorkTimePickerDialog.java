@@ -34,8 +34,8 @@ public class WorkTimePickerDialog extends DialogFragment {
     TextView btnConfirm;
     TextView timeOptionView;
 
-    private String workStartHour = "";
-    private String workStartMinute = "";
+    private int workStartHour = 0;
+    private int workStartMinute = 0;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -52,17 +52,17 @@ public class WorkTimePickerDialog extends DialogFragment {
 
         btnConfirm.setOnClickListener(view -> {
             if(!isStartTimeWritten){
-                workStartHour = String.valueOf(hourPicker.getValue());
-                workStartMinute = String.valueOf(minutePicker.getValue());
+                workStartHour  = hourPicker.getValue();
+                workStartMinute = minutePicker.getValue();
                 isStartTimeWritten = true;
                 btnConfirm.setText("OK");
                 timeOptionView.setText("퇴근시간");
             } else{
                 listener.onDataSet(
-                        workStartHour,
-                        workStartMinute,
-                        String.valueOf(hourPicker.getValue()),
-                        String.valueOf(minutePicker.getValue())
+                        (workStartHour < 10 ? "0" + String.valueOf(workStartHour) : String.valueOf(workStartHour)),
+                        (workStartMinute < 10 ? "0" + String.valueOf(workStartMinute) : String.valueOf(workStartMinute)),
+                        String.valueOf(hourPicker.getValue()<10? "0" + hourPicker.getValue() : hourPicker.getValue()),
+                        String.valueOf(minutePicker.getValue()<10? "0" + minutePicker.getValue() : minutePicker.getValue())
                 );
                 WorkTimePickerDialog.this.getDialog().cancel();
             }
