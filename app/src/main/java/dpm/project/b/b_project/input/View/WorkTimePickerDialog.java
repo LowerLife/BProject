@@ -16,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import butterknife.BindView;
+import butterknife.OnClick;
 import dpm.project.b.b_project.R;
 
 public class WorkTimePickerDialog extends DialogFragment {
@@ -31,8 +33,8 @@ public class WorkTimePickerDialog extends DialogFragment {
         this.listener = listener;
     }
 
-    TextView btnConfirm;
-    TextView timeOptionView;
+    private TextView btnConfirm;
+    private TextView timeOptionView;
 
     private int workStartHour = 0;
     private int workStartMinute = 0;
@@ -59,10 +61,10 @@ public class WorkTimePickerDialog extends DialogFragment {
                 timeOptionView.setText("퇴근시간");
             } else{
                 listener.onDataSet(
-                        (workStartHour < 10 ? "0" + String.valueOf(workStartHour) : String.valueOf(workStartHour)),
-                        (workStartMinute < 10 ? "0" + String.valueOf(workStartMinute) : String.valueOf(workStartMinute)),
-                        String.valueOf(hourPicker.getValue()<10? "0" + hourPicker.getValue() : hourPicker.getValue()),
-                        String.valueOf(minutePicker.getValue()<10? "0" + minutePicker.getValue() : minutePicker.getValue())
+                        onChangeNumberForm(workStartHour),
+                        onChangeNumberForm(workStartMinute),
+                        onChangeNumberForm(hourPicker.getValue()),
+                        onChangeNumberForm(minutePicker.getValue())
                 );
                 WorkTimePickerDialog.this.getDialog().cancel();
             }
@@ -71,13 +73,7 @@ public class WorkTimePickerDialog extends DialogFragment {
         //Hour Picker
         hourPicker.setMinValue(1);
         hourPicker.setMaxValue(12);
-        hourPicker.setFormatter(i -> {
-            String num = String.valueOf(i);
-            if(i<10){
-                return "0"+num;
-            }
-            return num;
-        });
+        hourPicker.setFormatter(i -> onChangeNumberForm(i));
         //숫자 클릭시 editText 로 변경 제거
         hourPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         int hour = Integer.valueOf(getTime.split(":")[0]);
@@ -86,13 +82,7 @@ public class WorkTimePickerDialog extends DialogFragment {
         //Minute Picker
         minutePicker.setMinValue(0);
         minutePicker.setMaxValue(59);
-        minutePicker.setFormatter(i -> {
-            String num = String.valueOf(i);
-            if(i<10){
-                return "0"+num;
-            }
-            return num;
-        });
+        minutePicker.setFormatter(i -> onChangeNumberForm(i));
         minutePicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         int minute = Integer.valueOf(getTime.split(":")[1]);
         minutePicker.setValue(minute);
@@ -100,5 +90,9 @@ public class WorkTimePickerDialog extends DialogFragment {
         builder.setView(dialog);
 
         return builder.create();
+    }
+
+    public String onChangeNumberForm(int num){
+        return (num < 10 ? "0" + String.valueOf(num) : String.valueOf(num));
     }
 }
