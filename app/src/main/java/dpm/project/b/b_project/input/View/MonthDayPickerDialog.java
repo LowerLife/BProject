@@ -1,6 +1,5 @@
 package dpm.project.b.b_project.input.View;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -16,7 +15,6 @@ import dpm.project.b.b_project.R;
 
 public class MonthDayPickerDialog extends DialogFragment {
 
-    //private DatePickerDialog.OnDateSetListener listener;
     private PickerListener listener;
     public Calendar cal = Calendar.getInstance();
 
@@ -24,8 +22,7 @@ public class MonthDayPickerDialog extends DialogFragment {
         this.listener = listener;
     }
 
-    TextView btnConfirm;
-    //Button btnCancel;
+    private TextView btnConfirm;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -35,15 +32,16 @@ public class MonthDayPickerDialog extends DialogFragment {
         View dialog = inflater.inflate(R.layout.month_day_picker, null);
 
         btnConfirm = dialog.findViewById(R.id.enter_date_picker_ok_btn);
-        //btnCancel = dialog.findViewById(R.id.btn_cancel);
 
         final NumberPicker monthPicker = dialog.findViewById(R.id.picker_month);
         final NumberPicker dayPicker = dialog.findViewById(R.id.picker_day);
 
-        //btnCancel.setOnClickListener(view -> MonthDayPickerDialog.this.getDialog().cancel());
-
         btnConfirm.setOnClickListener(view -> {
-            listener.onDataSet(String.valueOf(monthPicker.getValue()), String.valueOf(dayPicker.getValue()), "", "");
+            listener.onDataSet(
+                    String.valueOf(monthPicker.getValue()),
+                    String.valueOf(dayPicker.getValue()),
+                    "",
+                    "");
             MonthDayPickerDialog.this.getDialog().cancel();
         });
 

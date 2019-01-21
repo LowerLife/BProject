@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2"/>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/my_page_yearly_salary_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"/>
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/my_page_company_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -69,7 +69,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"/>
+        app:layout_constraintTop_toBottomOf="@+id/my_page_yearly_salary_view"/>
 
     <TextView
         android:id="@+id/textView7"
@@ -87,11 +87,7 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:background="#1a191d"
+        style="@style/MyPageBlackLineView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"/>
@@ -109,12 +105,8 @@
         app:layout_constraintTop_toBottomOf="@+id/view2">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/AllowTextViewStyle"
             android:text="월급 실수령액 수정"
-            android:textColor="@color/b_black"
-            android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -138,12 +130,8 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_monthly_salary">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/AllowTextViewStyle"
             android:text="입사일 수정"
-            android:textColor="@color/b_black"
-            android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -167,12 +155,8 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_enter_date">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/AllowTextViewStyle"
             android:text="월급일 수정"
-            android:textColor="@color/b_black"
-            android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -196,12 +180,8 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_salary_day">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/AllowTextViewStyle"
             android:text="출퇴근 수정"
-            android:textColor="@color/b_black"
-            android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -233,11 +213,7 @@
 
     <View
         android:id="@+id/view3"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:background="#1a191d"
+        style="@style/MyPageBlackLineView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"/>
@@ -255,12 +231,8 @@
         app:layout_constraintTop_toBottomOf="@+id/view3">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/AllowTextViewStyle"
             android:text="팩폭 알림 모음"
-            android:textColor="@color/b_black"
-            android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -284,17 +256,13 @@
 
         <TextView
             android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/AllowTextViewStyle"
             android:text="푸쉬 알림 소식 받기"
-            android:textColor="@color/b_black"
-            android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/my_page_alert_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -318,11 +286,9 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        style="@style/AllowButtonStyle"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="32dp"
-        android:background="@mipmap/group"
         android:rotation="180"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -340,6 +306,5 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"/>
-
 
 </android.support.constraint.ConstraintLayout>

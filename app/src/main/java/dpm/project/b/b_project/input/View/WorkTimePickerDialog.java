@@ -72,7 +72,7 @@ public class WorkTimePickerDialog extends DialogFragment {
 
         //Hour Picker
         hourPicker.setMinValue(1);
-        hourPicker.setMaxValue(12);
+        hourPicker.setMaxValue(24);
         hourPicker.setFormatter(i -> onChangeNumberForm(i));
         //숫자 클릭시 editText 로 변경 제거
         hourPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);

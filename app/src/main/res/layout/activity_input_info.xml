@@ -8,19 +8,25 @@
     android:background="@android:color/white"
     tools:context=".input.View.InputInfoActivity">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.03"/>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="13dp"
         android:fontFamily="@font/anton"
         android:text="@string/b_life"
         android:textColor="#1a191d"
         android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline4"/>
 
     <View
         android:id="@+id/info_input_underline"
@@ -31,27 +37,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16"/>
+
     <TextView
         android:id="@+id/info_input_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
         android:lineHeight="26sp"
         android:text="안녕하세요!"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_underline"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline5"/>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="26dp"
         android:layout_height="26dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
         app:layout_constraintStart_toEndOf="@+id/info_input_text1"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_underline"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
         app:srcCompat="@drawable/hello"/>
 
     <TextView
@@ -80,7 +91,7 @@
     <EditText
         android:id="@+id/info_input_monthly_salary"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="27dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
@@ -213,9 +224,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/input_info_bottom_bg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/info_input_quit_time"
         app:srcCompat="@mipmap/img_4"/>
 
 </android.support.constraint.ConstraintLayout>

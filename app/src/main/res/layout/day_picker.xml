@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:text="일"
             android:textColor="@android:color/black"
-            android:textSize="22sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/picker_day"
