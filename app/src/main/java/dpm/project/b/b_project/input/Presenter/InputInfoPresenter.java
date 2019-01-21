@@ -16,12 +16,12 @@ public class InputInfoPresenter
     private InputInfoContract.View view;
 
     @Override
-    public void inputData(Context context, String monthlySalary, String enterDate, String salaryDay, String workStartAndQuitTime) {
+    public void inputData(Context context, int monthlySalary, String enterDate, String salaryDay, String workStartAndQuitTime) {
         if (Utils.sharedPreferences == null) {
             Utils.sharedPreferences = context.getSharedPreferences("bproject", Context.MODE_PRIVATE);
         }
         SharedPreferences.Editor editor = Utils.sharedPreferences.edit();
-        editor.putString(MONTHLY_PAY, monthlySalary);
+        editor.putInt(MONTHLY_PAY, monthlySalary);
         editor.putString(ENTER_DATE, enterDate);
         editor.putString(SALARY_DAY, salaryDay);
         editor.putString(WORK_START_AND_END_AT, workStartAndQuitTime);

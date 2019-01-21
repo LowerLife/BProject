@@ -9,7 +9,7 @@ public interface InputInfoContract {
     }
 
     interface Presenter{
-        void inputData(Context context, String monthlySalary, String enterDate, String salaryDay, String quitTime);
+        void inputData(Context context, int monthlySalary, String enterDate, String salaryDay, String quitTime);
         void attachView(View view);
         void detachView();
     }

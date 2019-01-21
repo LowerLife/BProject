@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
 
 import okhttp3.internal.Util;
@@ -22,24 +23,26 @@ public class Utils {
     public static SharedPreferences sharedPreferences;
     SimpleDateFormat workTimeParse;
     Calendar calendar;
-    String workTime;
+    String workTimeStartAt;
+    String workTimeEndAt;
 
     public Utils(Context context){
         this.context = context;
         sharedPreferences = context.getSharedPreferences("bproject",Context.MODE_PRIVATE);
         workTimeParse = new SimpleDateFormat("HHmmss",Locale.KOREA);
-        workTime = sharedPreferences.getString(WORK_TIME,"1800");
+        String[] workTime = Objects.requireNonNull(sharedPreferences.getString(WORK_START_AND_END_AT, "09:30 / 06:30")).replace(":","").split("/");
+        workTimeStartAt = workTime[0].trim();
+        workTimeEndAt = workTime[1].trim();
         calendar = new GregorianCalendar();
         calendar.setTime(new Date());
         calendar.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
     }
 
     public boolean isOffWork(){
-        String workTime = sharedPreferences.getString(WORK_TIME,"1800");
         SimpleDateFormat workTimeParse = new SimpleDateFormat("HHmm",Locale.KOREA);
         try {
             long cur = workTimeParse.parse(workTimeParse.format(calendar.getTime())).getTime();
-            long req = workTimeParse.parse(workTime).getTime();
+            long req = workTimeParse.parse(workTimeEndAt).getTime();
             return cur > req;
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,13 +51,12 @@ public class Utils {
     }
 
     public String getWorkTime(){
-        workTime = sharedPreferences.getString(WORK_TIME,"1800");
         SimpleDateFormat workTimeFormat = new SimpleDateFormat("H시간mm분",Locale.KOREA);
         workTimeParse = new SimpleDateFormat("HHmm",Locale.KOREA);
         workTimeFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         try {
             long cur = calendar.getTime().getTime();
-            long req = workTimeParse.parse(workTime).getTime();
+            long req = workTimeParse.parse(workTimeEndAt).getTime();
             return workTimeFormat.format(req - cur);
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,14 +66,22 @@ public class Utils {
 
     public String getDayPay(){
         calendar.setTime(new Date());
-        int monthlyPay = sharedPreferences.getInt(WORK_TIME,2000000);
+        int monthlyPay = sharedPreferences.getInt(MONTHLY_PAY,2000000);
         long payInt = monthlyPay / calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         DecimalFormat myFormatter = new DecimalFormat("###,###");
+        if(isOffWork()) return myFormatter.format(payInt);
         try {
-            long cur = workTimeParse.parse(calendar.get(Calendar.HOUR)+""+calendar.get(Calendar.MINUTE)+""+ calendar.get(Calendar.SECOND)).getTime();
-            long req = workTimeParse.parse(workTime).getTime();
+            String h = workTimeEndAt.substring(0,2);
+            String m = workTimeEndAt.substring(2,4);
+            Calendar workEndTimeCalendar = new GregorianCalendar();
+            workEndTimeCalendar.setTime(new Date());
+            workEndTimeCalendar.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+            workEndTimeCalendar.set(Calendar.HOUR_OF_DAY,Integer.parseInt(h));
+            workEndTimeCalendar.set(Calendar.MINUTE,Integer.parseInt(m));
+            workEndTimeCalendar.set(Calendar.SECOND,0);
+            long cur = calendar.getTime().getTime() - workEndTimeCalendar.getTime().getTime();
+            long req = workTimeParse.parse(workTimeEndAt).getTime();
             payInt = (long)(payInt * ((float)cur / req * 100) / 100);
-            Log.e(payInt+"");
         } catch (ParseException e) {
             e.printStackTrace();
         }

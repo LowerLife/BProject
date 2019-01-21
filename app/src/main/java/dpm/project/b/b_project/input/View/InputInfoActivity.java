@@ -115,7 +115,7 @@ public class InputInfoActivity extends AppCompatActivity
         }
 
         Log.d("test",salary + " " + date + " " + day + " " + time);
-        presenter.inputData(getApplicationContext(), salary, date, day, time);
+        presenter.inputData(getApplicationContext(), Integer.parseInt(salary), date, day, time);
         onSuccess();
     }
 
