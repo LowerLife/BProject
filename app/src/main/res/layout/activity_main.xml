@@ -9,6 +9,26 @@
     <me.kaelaela.verticalviewpager.VerticalViewPager
         android:id="@+id/main_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/main_bottom_space"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/main_bottom_space"
+        android:background="#e6003e"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:srcCompat="@drawable/main_bottom_icon"
+        app:layout_constraintLeft_toLeftOf="@id/main_bottom_space"
+        app:layout_constraintBottom_toBottomOf="@id/main_bottom_space"
+        android:layout_marginLeft="32dp"
+        app:layout_constraintTop_toTopOf="@id/main_bottom_space"/>
 
 </android.support.constraint.ConstraintLayout>

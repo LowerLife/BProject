@@ -12,4 +12,5 @@
     <string name="d_day">%s일</string>
 
     <string name="buy_item"><![CDATA[<font color=#3e3e40>현재 돈으로 구매할 수 있는건 </font><font color=#ffffff>%s</font><font color=#3e3e40> 입니다.</font>]]></string>
+    <string name="main_text_offwork">오늘 퇴근은 한거죠?\n낼 또 봐요! 수고했어요~!</string>
 </resources>

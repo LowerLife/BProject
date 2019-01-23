@@ -14,6 +14,8 @@ import butterknife.ButterKnife;
 import dpm.project.b.b_project.R;
 import dpm.project.b.b_project.base.BaseActivity;
 import dpm.project.b.b_project.input.View.InputInfoActivity;
+import dpm.project.b.b_project.main.MainActivity;
+import dpm.project.b.b_project.util.Const;
 
 public class StoryActivity extends BaseActivity {
 
@@ -33,6 +35,11 @@ public class StoryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story);
         ButterKnife.bind(this);
+
+        if(isFirstInfo(Const.ENTER_DATE) && isFirstInfo(Const.MONTHLY_PAY) && isFirstInfo(Const.SALARY_DAY) && isFirstInfo(Const.WORK_START_AND_END_AT)){
+            startActivity(new Intent(this, MainActivity.class));
+        }
+
         final StoryPagerAdapter storyPagerAdapter = new StoryPagerAdapter(this);
         stBottomBtn.setText(R.string.next);
         stViewpager.setAdapter(storyPagerAdapter);
@@ -68,4 +75,9 @@ public class StoryActivity extends BaseActivity {
             }
         });
     }
+
+    private boolean isFirstInfo(String key){
+        return sharedPreferences.contains(key);
+    }
+
 }

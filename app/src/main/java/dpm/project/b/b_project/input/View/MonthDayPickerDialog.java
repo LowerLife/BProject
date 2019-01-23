@@ -37,8 +37,9 @@ public class MonthDayPickerDialog extends DialogFragment {
         final NumberPicker dayPicker = dialog.findViewById(R.id.picker_day);
 
         btnConfirm.setOnClickListener(view -> {
+            int month = monthPicker.getValue();
             listener.onDataSet(
-                    String.valueOf(monthPicker.getValue()),
+                    (month < 10 ? "0" + String.valueOf(month) : String.valueOf(month)),
                     String.valueOf(dayPicker.getValue()),
                     "",
                     "");

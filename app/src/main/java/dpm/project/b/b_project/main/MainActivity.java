@@ -18,18 +18,25 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.main_viewpager)
     VerticalViewPager mainViewpager;
-
+    MainViewPagerAdapter mainViewPagerAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Log.e(utils.getDayPay() + "///" + utils.getWorkTime());
-        mainViewpager.setAdapter(new MainViewPagerAdapter(this));
+        Log.e(utils.getDayPay() + "///" + utils.getWorkTime() + "///" + utils.getYearlyDay() + "///" + utils.getMonthlyDay());
+        mainViewPagerAdapter = new MainViewPagerAdapter(this);
+        mainViewpager.setAdapter(mainViewPagerAdapter);
         mainViewpager.setPageTransformer(true, (view, position) -> {
             view.setTranslationX(view.getWidth() * -position);
             float yPosition = position * view.getHeight();
             view.setTranslationY(yPosition);
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        mainViewPagerAdapter.dispose();
+        super.onDestroy();
     }
 }

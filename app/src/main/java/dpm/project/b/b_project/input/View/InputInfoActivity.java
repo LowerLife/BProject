@@ -114,6 +114,8 @@ public class InputInfoActivity extends AppCompatActivity
             return;
         }
 
+        date = date.replace("월 ","").replace("일","");
+        day = day.replace("일","");
         Log.d("test",salary + " " + date + " " + day + " " + time);
         presenter.inputData(getApplicationContext(), Integer.parseInt(salary), date, day, time);
         onSuccess();
