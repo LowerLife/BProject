@@ -38,6 +38,7 @@ public class StoryActivity extends BaseActivity {
 
         if(isFirstInfo(Const.ENTER_DATE) && isFirstInfo(Const.MONTHLY_PAY) && isFirstInfo(Const.SALARY_DAY) && isFirstInfo(Const.WORK_START_AND_END_AT)){
             startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
 
         final StoryPagerAdapter storyPagerAdapter = new StoryPagerAdapter(this);
@@ -70,6 +71,7 @@ public class StoryActivity extends BaseActivity {
         stBottomBtn.setOnClickListener(view -> {
             if (storyPagerAdapter.getCount() == stViewpager.getCurrentItem() + 1) {
                 startActivity(new Intent(this, InputInfoActivity.class));
+                finish();
             } else {
                 stViewpager.setCurrentItem(stViewpager.getCurrentItem() + 1);
             }
