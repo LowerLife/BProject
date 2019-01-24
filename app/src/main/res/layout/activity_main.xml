@@ -23,6 +23,7 @@
         android:background="#e6003e"/>
 
     <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/setting_menu_btn"
         android:layout_width="32dp"
         android:layout_height="32dp"
         app:srcCompat="@drawable/main_bottom_icon"

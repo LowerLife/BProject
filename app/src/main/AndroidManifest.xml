@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".setting.MyPageActivity">
         </activity>
+        <activity android:name=".setting.EditInfoActivity">
+        </activity>
     </application>
 
 </manifest>

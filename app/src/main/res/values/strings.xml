@@ -13,4 +13,11 @@
 
     <string name="buy_item"><![CDATA[<font color=#3e3e40>현재 돈으로 구매할 수 있는건 </font><font color=#ffffff>%s</font><font color=#3e3e40> 입니다.</font>]]></string>
     <string name="main_text_offwork">오늘 퇴근은 한거죠?\n낼 또 봐요! 수고했어요~!</string>
+
+    <string name="edit_monthly_salary_view">갑자기\n월급이 올랐어요?\n올~~~~~~~~~~</string>
+    <string name="edit_enter_date_view">모야모야\n새로 직장 바꿨어요?\n더 좋은데 이길 바래!</string>
+    <string name="edit_salary_day_view">월급은\n언제나 빨리 받을 수록\n좋은 법이지</string>
+    <string name="edit_work_time_view">출근하면 언제나\n퇴근을 하고 싶지\n1초 1초가 중요햇!</string>
+    <string name="edit_info_edit_text_view">그럼당장 / 변경해요</string>
+
 </resources>

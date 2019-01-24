@@ -284,27 +284,35 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <Button
-        android:id="@+id/button"
-        style="@style/AllowButtonStyle"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="32dp"
-        android:rotation="180"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/mypage_back_btn"
+    <LinearLayout
+        android:id="@+id/my_page_back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/anton"
-        android:text="BACK"
-        android:textColor="@color/b_black"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="32dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"/>
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            style="@style/AllowButtonStyle"
+            android:layout_gravity="center_vertical"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:fontFamily="@font/anton"
+            android:text="BACK"
+            android:textColor="@color/b_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button"/>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
