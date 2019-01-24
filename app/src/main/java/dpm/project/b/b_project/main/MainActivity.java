@@ -15,8 +15,6 @@ import dpm.project.b.b_project.base.BaseActivity;
 import dpm.project.b.b_project.setting.MyPageActivity;
 import dpm.project.b.b_project.util.Log;
 import me.kaelaela.verticalviewpager.VerticalViewPager;
-import me.kaelaela.verticalviewpager.transforms.DefaultTransformer;
-import me.kaelaela.verticalviewpager.transforms.StackTransformer;
 
 public class MainActivity extends BaseActivity {
 
@@ -40,6 +38,7 @@ public class MainActivity extends BaseActivity {
             float yPosition = position * view.getHeight();
             view.setTranslationY(yPosition);
         });
+//        mainViewpager.setOffscreenPageLimit(2);
     }
 
     @OnClick(R.id.setting_menu_btn)

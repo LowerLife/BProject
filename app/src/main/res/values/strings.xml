@@ -7,8 +7,10 @@
     <string name="b_life">B LIFE</string>
     <string name="_1day">1 DAY</string>
     <string name="_1month">1 MONTH</string>
+    <string name="_1year">1 YEAR</string>
     <string name="hourly_pay">HOURLY PAY</string>
     <string name="monthly_pay">MONTHLY PAY</string>
+    <string name="yearly_pay">YEARLY PAY</string>
     <string name="d_day">%s일</string>
 
     <string name="buy_item"><![CDATA[<font color=#3e3e40>현재 돈으로 구매할 수 있는건 </font><font color=#ffffff>%s</font><font color=#3e3e40> 입니다.</font>]]></string>
