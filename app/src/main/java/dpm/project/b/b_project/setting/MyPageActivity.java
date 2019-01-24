@@ -45,7 +45,7 @@ public class MyPageActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         sharedPreferences = getSharedPreferences("bproject", Context.MODE_PRIVATE);
-        myYearlySalary.setText(sharedPreferences.getString(SALARY_DAY, "25"));
+        myYearlySalary.setText(String.valueOf(sharedPreferences.getInt(MONTHLY_PAY, 0)*12));
     }
 
     @OnClick(R.id.edit_monthly_salary)
