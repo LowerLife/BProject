@@ -83,7 +83,7 @@
         android:layout_width="200dp"
         android:layout_height="4dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="12dp"
         android:background="#e6003e"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/info_input_text2"/>
@@ -212,7 +212,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="32dp"
         android:fontFamily="@font/anton"
-        android:text="NEXT"
+        android:text="@string/next"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold"

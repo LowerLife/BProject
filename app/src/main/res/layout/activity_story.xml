@@ -34,14 +34,15 @@
         android:id="@+id/st_bottom_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:fontFamily="@font/anton"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/st_bottom_bg"
         app:layout_constraintRight_toRightOf="@id/st_bottom_bg"
         app:layout_constraintTop_toTopOf="@id/st_bottom_bg"
-        tools:text="START" />
+        tools:text="START"/>
 
     <android.support.constraint.Group
         android:id="@+id/story_bottom_group"

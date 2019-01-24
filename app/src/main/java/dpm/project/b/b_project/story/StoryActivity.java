@@ -42,7 +42,7 @@ public class StoryActivity extends BaseActivity {
         }
 
         final StoryPagerAdapter storyPagerAdapter = new StoryPagerAdapter(this);
-        stBottomBtn.setText(R.string.next);
+        stBottomBtn.setText(R.string.start);
         stViewpager.setAdapter(storyPagerAdapter);
         stViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

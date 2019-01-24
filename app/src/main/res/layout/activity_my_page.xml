@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05"/>
+        app:layout_constraintGuide_percent="0.06"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
+        android:fontFamily="@font/anton"
         android:text="Yearly Salary"
         android:textColor="#26ffffff"
         android:textSize="14sp"
@@ -51,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
+        android:fontFamily="@font/anton"
         android:text="TextView"
         android:textColor="#ffffff"
         android:textSize="26sp"
@@ -59,25 +61,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"/>
 
     <TextView
-        android:id="@+id/my_page_company_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:fontFamily="none"
-        android:text="회사명"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_page_yearly_salary_view"/>
-
-    <TextView
         android:id="@+id/textView7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/anton"
         android:text="INFORMATION"
         android:textColor="@color/b_black"
         android:textSize="14sp"
@@ -205,6 +195,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
+        android:fontFamily="@font/anton"
         android:text="ALERT"
         android:textColor="@color/b_black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -306,7 +297,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:fontFamily="@font/anton"
-            android:text="BACK"
+            android:text="@string/back"
             android:textColor="@color/b_black"
             android:textSize="20sp"
             android:textStyle="bold"
