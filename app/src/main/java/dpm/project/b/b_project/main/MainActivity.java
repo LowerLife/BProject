@@ -30,7 +30,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Log.e(utils.getDayPay() + "///" + utils.getWorkTime() + "///" + utils.getYearlyDay() + "///" + utils.getMonthlyDay());
         mainViewPagerAdapter = new MainViewPagerAdapter(this);
         mainViewpager.setAdapter(mainViewPagerAdapter);
         mainViewpager.setPageTransformer(true, (view, position) -> {
@@ -38,7 +37,6 @@ public class MainActivity extends BaseActivity {
             float yPosition = position * view.getHeight();
             view.setTranslationY(yPosition);
         });
-//        mainViewpager.setOffscreenPageLimit(2);
     }
 
     @OnClick(R.id.setting_menu_btn)

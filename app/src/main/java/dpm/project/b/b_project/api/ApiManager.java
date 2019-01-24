@@ -29,7 +29,7 @@ public class ApiManager {
         });
 
         return new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("http://seong0428.iptime.org:11000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build())
                 .build();

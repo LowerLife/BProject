@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "824772636304",
+    "firebase_url": "https://blife-d7ec7.firebaseio.com",
+    "project_id": "blife-d7ec7",
+    "storage_bucket": "blife-d7ec7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824772636304:android:caa01afcc0d1f050",
+        "android_client_info": {
+          "package_name": "dpm.project.b.b_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824772636304-7gusmtut1ar8b1brpqk1g6dp2sensnqj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dpm.project.b.b_project",
+            "certificate_hash": "fcc59937cc765a24300553f412eed07a6d5fd299"
+          }
+        },
+        {
+          "client_id": "824772636304-vt81akv10n265hctueghqfak6fqr0o83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtESy9N3fLS2h1-1a0kuwpJpmVa-EJKRI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824772636304-vt81akv10n265hctueghqfak6fqr0o83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

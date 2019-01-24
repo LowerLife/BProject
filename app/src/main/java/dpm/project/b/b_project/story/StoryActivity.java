@@ -36,11 +36,6 @@ public class StoryActivity extends BaseActivity {
         setContentView(R.layout.activity_story);
         ButterKnife.bind(this);
 
-        if(isFirstInfo(Const.ENTER_DATE) && isFirstInfo(Const.MONTHLY_PAY) && isFirstInfo(Const.SALARY_DAY) && isFirstInfo(Const.WORK_START_AND_END_AT)){
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        }
-
         final StoryPagerAdapter storyPagerAdapter = new StoryPagerAdapter(this);
         stBottomBtn.setText(R.string.start);
         stViewpager.setAdapter(storyPagerAdapter);
@@ -77,9 +72,4 @@ public class StoryActivity extends BaseActivity {
             }
         });
     }
-
-    private boolean isFirstInfo(String key){
-        return sharedPreferences.contains(key);
-    }
-
 }
