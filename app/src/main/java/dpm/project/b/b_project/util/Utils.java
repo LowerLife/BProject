@@ -48,15 +48,17 @@ public class Utils {
     }
 
     public boolean isOffWork() {
-        SimpleDateFormat workTimeParse = new SimpleDateFormat("HHmm", Locale.KOREA);
-        try {
-            long cur = workTimeParse.parse(workTimeParse.format(calendar.getTime())).getTime();
-            long req = workTimeParse.parse(workTimeEndAt).getTime();
-            return cur > req;
-        } catch (Exception e) {
-            e.printStackTrace();
+        Calendar nowCalendar = new GregorianCalendar();
+        nowCalendar.setTime(new Date());
+        nowCalendar.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+        int startTime = Integer.parseInt(workTimeStartAt);
+        int endTime = Integer.parseInt(workTimeEndAt);
+        String min = (nowCalendar.get(Calendar.MINUTE) >= 10) ? nowCalendar.get(Calendar.MINUTE)+"" : "0"+nowCalendar.get(Calendar.MINUTE);
+        int nowTime = Integer.parseInt(nowCalendar.get(Calendar.HOUR_OF_DAY)+min);
+        if(nowTime > startTime && nowTime < endTime){
             return false;
         }
+        return true;
     }
 
     public String getWorkTime() {

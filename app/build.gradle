@@ -41,4 +41,6 @@ dependencies {
     implementation 'me.kaelaela:verticalviewpager:1.0.0@aar'
     implementation "io.reactivex.rxjava2:rxjava:2.2.5"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+
+    implementation 'com.robinhood.ticker:ticker:2.0.1'
 }

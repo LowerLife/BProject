@@ -13,6 +13,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="19dp"
         android:text="@string/b_life"
+        android:fontFamily="@font/anton"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -32,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="41dp"
         android:text="@string/_1day"
+        android:fontFamily="@font/anton"
         android:textColor="@android:color/white"
         android:textSize="26sp"
         app:layout_constraintLeft_toLeftOf="@id/main_day_title"
@@ -43,6 +45,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/hourly_pay"
         android:textColor="#3e3e40"
+        android:fontFamily="@font/anton"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="@id/main_day_title"
         app:layout_constraintTop_toBottomOf="@id/main_txt" />
@@ -58,12 +61,14 @@
         app:layout_constraintTop_toBottomOf="@id/main_txt"
         tools:text="지옥의 회사에서 퇴근시간까지\n1시간 40분 남았어요." />
 
-    <android.support.v7.widget.AppCompatTextView
+    <com.robinhood.ticker.TickerView
         android:id="@+id/main_pay"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="44dp"
         android:textColor="@android:color/white"
+        android:fontFamily="@font/anton"
+        android:gravity="center_vertical"
         android:textSize="28sp"
         app:layout_constraintLeft_toLeftOf="@id/main_day_title"
         app:layout_constraintRight_toRightOf="@id/main_pay_line"
