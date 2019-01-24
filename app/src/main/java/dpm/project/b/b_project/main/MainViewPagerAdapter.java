@@ -37,8 +37,7 @@ public class MainViewPagerAdapter extends PagerAdapter {
     private TypedArray layouts;
     private Utils utils;
     private String[] timeData;
-    private Disposable intervalObservable;
-    private ArrayList<Item> items = new ArrayList<>();
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
     MainViewPagerAdapter(Context context) {
         this.context = context;
         mInflater = LayoutInflater.from(context);
@@ -62,11 +61,11 @@ public class MainViewPagerAdapter extends PagerAdapter {
         payText.setTypeface(ResourcesCompat.getFont(context,R.font.anton));
         String timeStr = String.format(context.getResources().getStringArray(R.array.main_text)[position], timeData[position]);
         timeText.setText(Html.fromHtml(timeStr));
-        intervalObservable = Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).subscribe(a -> {
+        Disposable intervalObservable = Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).subscribe(a -> {
             switch (position) {
                 case 0:
                     payText.setText(utils.getDayPay());
-                    if(!utils.isOffWork())
+                    if (!utils.isOffWork())
                         timeText.setText(Html.fromHtml(String.format(context.getResources().getStringArray(R.array.main_text)[position], utils.getWorkTime())));
                     else timeText.setText(R.string.main_text_offwork);
                     break;
@@ -77,32 +76,29 @@ public class MainViewPagerAdapter extends PagerAdapter {
                     payText.setText(utils.getYearlyPay());
                     break;
             }
+            payText.invalidate();
         });
-        items.add(new Item(v,intervalObservable));
+        compositeDisposable.add(intervalObservable);
         container.addView(v);
-        return v;
+        return new Item(v, intervalObservable);
     }
 
     public void dispose(){
-        for (Item item : items){
-            item.actual.dispose();
-        }
+        compositeDisposable.dispose();
     }
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        for (Item item : items){
-            if(item.view == object){
-                item.actual.dispose();
-                items.remove(item);
-                break;
-            }
+        if (object instanceof Item) {
+            final Item item = (Item) object;
+            container.removeView(item.view);
+            item.dispose();
         }
     }
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-        return view == o;
+        return view == ((Item)o).view;
     }
 
     private static final class Item implements Disposable{
