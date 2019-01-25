@@ -1,5 +1,6 @@
 package dpm.project.b.b_project.main;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
@@ -10,6 +11,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
 import com.robinhood.ticker.TickerUtils;
@@ -17,10 +19,14 @@ import com.robinhood.ticker.TickerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import dpm.project.b.b_project.R;
+import dpm.project.b.b_project.api.ApiManager;
+import dpm.project.b.b_project.api.BLifeApi;
+import dpm.project.b.b_project.api.ItemData;
 import dpm.project.b.b_project.util.Log;
 import dpm.project.b.b_project.util.Utils;
 import io.reactivex.Observable;
@@ -29,6 +35,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainViewPagerAdapter extends PagerAdapter {
 
@@ -38,6 +47,7 @@ public class MainViewPagerAdapter extends PagerAdapter {
     private Utils utils;
     private String[] timeData;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     MainViewPagerAdapter(Context context) {
         this.context = context;
         mInflater = LayoutInflater.from(context);
@@ -56,9 +66,10 @@ public class MainViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View v = mInflater.inflate(layouts.getResourceId(position, 0), container, false);
         TextView timeText = v.findViewById(R.id.main_time);
+        TextView buyText = v.findViewById(R.id.main_buy_main);
         TickerView payText = v.findViewById(R.id.main_pay);
         payText.setCharacterLists(TickerUtils.provideNumberList());
-        payText.setTypeface(ResourcesCompat.getFont(context,R.font.anton));
+        payText.setTypeface(ResourcesCompat.getFont(context, R.font.anton));
         String timeStr = String.format(context.getResources().getStringArray(R.array.main_text)[position], timeData[position]);
         timeText.setText(Html.fromHtml(timeStr));
         Disposable intervalObservable = Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).subscribe(a -> {
@@ -78,13 +89,73 @@ public class MainViewPagerAdapter extends PagerAdapter {
             }
             payText.invalidate();
         });
+/** TODO 집에가서 테스트
+        int pay = 0;
+        switch (position) {
+            case 0:
+                pay = Integer.parseInt(utils.getDayPay().replace(",",""));
+                break;
+            case 1:
+                pay = Integer.parseInt(utils.getMonthlyPay().replace(",",""));
+                break;
+            case 2:
+                pay = Integer.parseInt(utils.getYearlyPay().replace(",",""));
+                break;
+        }
+        ApiManager.client().create(BLifeApi.class).getItem(pay,30).enqueue(new Callback<List<ItemData>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<ItemData>> call, @NonNull Response<List<ItemData>> response) {
+                if (response.body() != null) {
+                    setBuyAnimate(response.body(),0,buyText);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<ItemData>> call, @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
+ */
+
         compositeDisposable.add(intervalObservable);
         container.addView(v);
         return new Item(v, intervalObservable);
     }
 
-    public void dispose(){
+    void dispose() {
         compositeDisposable.dispose();
+    }
+
+    private void setBuyAnimate(List<ItemData> items,int listPosition, TextView buyText){
+        buyText.addOnLayoutChangeListener((view, l, t, r, b, ol, ot, or, ob) -> view.animate().translationY((float)-view.getHeight()).alpha(0f).setDuration(1000)
+                .setStartDelay(300).setInterpolator(new AccelerateDecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animator) { }
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        int newPosition = listPosition+1;
+                        if(items.size() <= newPosition) newPosition = 0;
+                        buyText.setText("");
+                        buyText.setTranslationY((float)buyText.getHeight());
+                        int finalNewPosition = newPosition;
+                        buyText.animate().translationY(0f).alpha(1f).setListener(new Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animator) {}
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                setBuyAnimate(items, finalNewPosition,buyText);
+                            }
+                            @Override
+                            public void onAnimationCancel(Animator animator) {}
+                            @Override
+                            public void onAnimationRepeat(Animator animator) {}
+                        });
+                    }
+                    @Override
+                    public void onAnimationCancel(Animator animator) { }
+                    @Override
+                    public void onAnimationRepeat(Animator animator) { }
+                }));
     }
 
     @Override
@@ -98,15 +169,15 @@ public class MainViewPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-        return view == ((Item)o).view;
+        return view == ((Item) o).view;
     }
 
-    private static final class Item implements Disposable{
+    private static final class Item implements Disposable {
 
         View view;
         Disposable actual;
 
-        Item(View v,Disposable actual){
+        Item(View v, Disposable actual) {
             this.view = v;
             this.actual = actual;
         }

@@ -2,9 +2,6 @@ package dpm.project.b.b_project.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.widget.ImageView;
 
 import butterknife.BindView;
@@ -13,7 +10,6 @@ import butterknife.OnClick;
 import dpm.project.b.b_project.R;
 import dpm.project.b.b_project.base.BaseActivity;
 import dpm.project.b.b_project.setting.MyPageActivity;
-import dpm.project.b.b_project.util.Log;
 import me.kaelaela.verticalviewpager.VerticalViewPager;
 
 public class MainActivity extends BaseActivity {

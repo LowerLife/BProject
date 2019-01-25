@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="19dp"
-        android:text="@string/b_life"
         android:fontFamily="@font/anton"
+        android:text="@string/b_life"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -32,8 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="41dp"
-        android:text="@string/_1day"
         android:fontFamily="@font/anton"
+        android:text="@string/_1day"
         android:textColor="@android:color/white"
         android:textSize="26sp"
         app:layout_constraintLeft_toLeftOf="@id/main_day_title"
@@ -43,9 +43,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/anton"
         android:text="@string/hourly_pay"
         android:textColor="#3e3e40"
-        android:fontFamily="@font/anton"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="@id/main_day_title"
         app:layout_constraintTop_toBottomOf="@id/main_txt" />
@@ -66,9 +66,9 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="44dp"
-        android:textColor="@android:color/white"
         android:fontFamily="@font/anton"
         android:gravity="center_vertical"
+        android:textColor="@android:color/white"
         android:textSize="28sp"
         app:layout_constraintLeft_toLeftOf="@id/main_day_title"
         app:layout_constraintRight_toRightOf="@id/main_pay_line"
@@ -106,14 +106,42 @@
         app:layout_constraintTop_toBottomOf="@id/main_pay_line" />
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/main_buy_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="28dp"
+        android:text="현재 돈으로 구매할 수 있는건 "
         android:textColor="#3e3e40"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/main_day_title"
-        app:layout_constraintTop_toBottomOf="@id/main_pay_line"
-        tools:text="현재 돈으로 구매할 수 있는건 스타벅스 아메리카노 입니다."
+        app:layout_constraintTop_toBottomOf="@id/main_pay_line" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/main_buy_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="28dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/main_buy_first"
+        app:layout_constraintTop_toBottomOf="@id/main_pay_line"
+        tools:text="스타벅스 아메리카노" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="28dp"
+        android:text=" 입니다."
+        android:textColor="#3e3e40"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toRightOf="@id/main_buy_main"
+        app:layout_constraintTop_toBottomOf="@id/main_pay_line" />
 </android.support.constraint.ConstraintLayout>
