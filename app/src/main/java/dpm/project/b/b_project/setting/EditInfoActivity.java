@@ -1,6 +1,7 @@
 package dpm.project.b.b_project.setting;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,14 +16,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dpm.project.b.b_project.R;
+import dpm.project.b.b_project.base.BaseActivity;
 import dpm.project.b.b_project.input.View.DayPickerDialog;
 import dpm.project.b.b_project.input.View.MonthDayPickerDialog;
 import dpm.project.b.b_project.input.View.PickerListener;
 import dpm.project.b.b_project.input.View.WorkTimePickerDialog;
+import dpm.project.b.b_project.util.Utils;
 
+import static dpm.project.b.b_project.util.Const.ENTER_DATE;
 import static dpm.project.b.b_project.util.Const.MONTHLY_PAY;
+import static dpm.project.b.b_project.util.Const.SALARY_DAY;
+import static dpm.project.b.b_project.util.Const.WORK_START_AND_END_AT;
 
-public class EditInfoActivity extends AppCompatActivity {
+public class EditInfoActivity extends BaseActivity {
 
     @BindView(R.id.edit_info_emoji)
     ImageView editInfoEmoji;
@@ -122,7 +128,34 @@ public class EditInfoActivity extends AppCompatActivity {
 
     @OnClick(R.id.edit_info_ok_btn)
     public void onClickOkBtn(){
-        Toast.makeText(this, "수정은 조금만 기다려주세용ㅎㅎ", Toast.LENGTH_SHORT).show();
+        String salary = "";
+        String date = "";
+        String day = "";
+        String time = "";
+        SharedPreferences.Editor editor = Utils.sharedPreferences.edit();
+
+        switch (editKeyValue){
+            case 0:
+                salary = editInfoEditText.getText().toString();
+                editor.putInt(MONTHLY_PAY, Integer.parseInt(salary));
+                break;
+            case 1:
+                date = editInfoEditText2.getText().toString();
+                date = date.replace("월 ","").replace("일","");
+                editor.putString(ENTER_DATE, date);
+                break;
+            case 2:
+                day = editInfoEditText2.getText().toString();
+                day = day.replace("일","");
+                editor.putString(SALARY_DAY, day);
+                break;
+            case 3:
+                time = editInfoEditText2.getText().toString();
+                editor.putString(WORK_START_AND_END_AT, time);
+                break;
+            default:
+        }
+        editor.commit();
         finish();
     }
 

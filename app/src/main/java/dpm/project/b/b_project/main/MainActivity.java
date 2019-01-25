@@ -43,8 +43,8 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.setting_menu_btn)
     public void onClickSettingMenu(){
-        Toast.makeText(this, "마이페이지는 개발 중입니다 ㅠㅠ", Toast.LENGTH_SHORT).show();
-//        startActivity(new Intent(this, MyPageActivity.class));
+//        Toast.makeText(this, "마이페이지는 개발 중입니다 ㅠㅠ", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, MyPageActivity.class));
     }
 
     @Override
