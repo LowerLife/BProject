@@ -2,9 +2,11 @@ package dpm.project.b.b_project.main;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.constraint.Group;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.PagerAdapter;
 import android.text.Html;
@@ -17,24 +19,18 @@ import android.widget.TextView;
 import com.robinhood.ticker.TickerUtils;
 import com.robinhood.ticker.TickerView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import dpm.project.b.b_project.R;
 import dpm.project.b.b_project.api.ApiManager;
 import dpm.project.b.b_project.api.BLifeApi;
 import dpm.project.b.b_project.api.ItemData;
-import dpm.project.b.b_project.util.Log;
 import dpm.project.b.b_project.util.Utils;
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -72,6 +68,7 @@ public class MainViewPagerAdapter extends PagerAdapter {
         payText.setTypeface(ResourcesCompat.getFont(context, R.font.anton));
         String timeStr = String.format(context.getResources().getStringArray(R.array.main_text)[position], timeData[position]);
         timeText.setText(Html.fromHtml(timeStr));
+        Group buyGroup = v.findViewById(R.id.main_buy_group);
         Disposable intervalObservable = Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).subscribe(a -> {
             switch (position) {
                 case 0:
@@ -89,24 +86,33 @@ public class MainViewPagerAdapter extends PagerAdapter {
             }
             payText.invalidate();
         });
-/** TODO 집에가서 테스트
+
         int pay = 0;
         switch (position) {
             case 0:
-                pay = Integer.parseInt(utils.getDayPay().replace(",",""));
+                pay = Integer.parseInt(utils.getDayPay().replace(",", ""));
                 break;
             case 1:
-                pay = Integer.parseInt(utils.getMonthlyPay().replace(",",""));
+                pay = Integer.parseInt(utils.getMonthlyPay().replace(",", ""));
                 break;
             case 2:
-                pay = Integer.parseInt(utils.getYearlyPay().replace(",",""));
+                pay = Integer.parseInt(utils.getYearlyPay().replace(",", ""));
                 break;
         }
-        ApiManager.client().create(BLifeApi.class).getItem(pay,30).enqueue(new Callback<List<ItemData>>() {
+        ApiManager.client().create(BLifeApi.class).getItem(pay, 30).enqueue(new Callback<List<ItemData>>() {
             @Override
             public void onResponse(@NonNull Call<List<ItemData>> call, @NonNull Response<List<ItemData>> response) {
                 if (response.body() != null) {
-                    setBuyAnimate(response.body(),0,buyText);
+                    setBuyAnimate(response.body(), 0, buyText);
+                    buyGroup.setVisibility(View.VISIBLE);
+                    buyText.setOnClickListener(view -> {
+                        for(ItemData itemData : response.body()){
+                            if(buyText.getText() == itemData.name){
+                                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(itemData.url)));
+                                break;
+                            }
+                        }
+                    });
                 }
             }
 
@@ -115,7 +121,7 @@ public class MainViewPagerAdapter extends PagerAdapter {
                 t.printStackTrace();
             }
         });
- */
+
 
         compositeDisposable.add(intervalObservable);
         container.addView(v);
@@ -126,36 +132,48 @@ public class MainViewPagerAdapter extends PagerAdapter {
         compositeDisposable.dispose();
     }
 
-    private void setBuyAnimate(List<ItemData> items,int listPosition, TextView buyText){
-        buyText.addOnLayoutChangeListener((view, l, t, r, b, ol, ot, or, ob) -> view.animate().translationY((float)-view.getHeight()).alpha(0f).setDuration(1000)
-                .setStartDelay(300).setInterpolator(new AccelerateDecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
+    private void setBuyAnimate(List<ItemData> items, int listPosition, TextView buyText) {
+        buyText.animate().translationY((float) -buyText.getHeight()).alpha(0f).setDuration(1000)
+                .setStartDelay(2000).setInterpolator(new AccelerateDecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                int newPosition = listPosition + 1;
+                if (items.size() <= newPosition) newPosition = 0;
+                buyText.setText(items.get(listPosition).name);
+                buyText.setTranslationY((float) buyText.getHeight());
+                int finalNewPosition = newPosition;
+                buyText.animate().setStartDelay(300).translationY(0f).alpha(1f).setListener(new Animator.AnimatorListener() {
                     @Override
-                    public void onAnimationStart(Animator animator) { }
+                    public void onAnimationStart(Animator animator) {
+                    }
+
                     @Override
                     public void onAnimationEnd(Animator animator) {
-                        int newPosition = listPosition+1;
-                        if(items.size() <= newPosition) newPosition = 0;
-                        buyText.setText("");
-                        buyText.setTranslationY((float)buyText.getHeight());
-                        int finalNewPosition = newPosition;
-                        buyText.animate().translationY(0f).alpha(1f).setListener(new Animator.AnimatorListener() {
-                            @Override
-                            public void onAnimationStart(Animator animator) {}
-                            @Override
-                            public void onAnimationEnd(Animator animator) {
-                                setBuyAnimate(items, finalNewPosition,buyText);
-                            }
-                            @Override
-                            public void onAnimationCancel(Animator animator) {}
-                            @Override
-                            public void onAnimationRepeat(Animator animator) {}
-                        });
+                        setBuyAnimate(items, finalNewPosition, buyText);
                     }
+
                     @Override
-                    public void onAnimationCancel(Animator animator) { }
+                    public void onAnimationCancel(Animator animator) {
+                    }
+
                     @Override
-                    public void onAnimationRepeat(Animator animator) { }
-                }));
+                    public void onAnimationRepeat(Animator animator) {
+                    }
+                });
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+            }
+        });
     }
 
     @Override

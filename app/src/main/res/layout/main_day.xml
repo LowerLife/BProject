@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/b_black">
 
     <android.support.v7.widget.AppCompatTextView
@@ -89,7 +89,7 @@
     <android.support.v7.widget.AppCompatImageView
         android:layout_width="78dp"
         android:layout_height="75dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="27dp"
         android:layout_marginEnd="27dp"
         app:layout_constraintRight_toRightOf="@id/main_pay_line"
         app:layout_constraintTop_toTopOf="@id/main_pay"
@@ -132,6 +132,7 @@
         tools:text="스타벅스 아메리카노" />
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/main_buy_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -140,8 +141,15 @@
         android:textColor="#3e3e40"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toRightOf="@id/main_buy_main"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_pay_line" />
+
+    <android.support.constraint.Group
+        android:id="@+id/main_buy_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="main_buy_first,,main_buy_main,main_buy_end" />
 </android.support.constraint.ConstraintLayout>

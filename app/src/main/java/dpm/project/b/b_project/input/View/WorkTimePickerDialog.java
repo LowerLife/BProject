@@ -59,6 +59,8 @@ public class WorkTimePickerDialog extends DialogFragment {
                 isStartTimeWritten = true;
                 btnConfirm.setText("OK");
                 timeOptionView.setText("퇴근시간");
+                hourPicker.setValue(18);
+                minutePicker.setValue(0);
             } else{
                 listener.onDataSet(
                         onChangeNumberForm(workStartHour),
@@ -77,7 +79,7 @@ public class WorkTimePickerDialog extends DialogFragment {
         //숫자 클릭시 editText 로 변경 제거
         hourPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         int hour = Integer.valueOf(getTime.split(":")[0]);
-        hourPicker.setValue(hour);
+        hourPicker.setValue(9);
 
         //Minute Picker
         minutePicker.setMinValue(0);
@@ -85,7 +87,7 @@ public class WorkTimePickerDialog extends DialogFragment {
         minutePicker.setFormatter(i -> onChangeNumberForm(i));
         minutePicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         int minute = Integer.valueOf(getTime.split(":")[1]);
-        minutePicker.setValue(minute);
+        minutePicker.setValue(0);
 
         builder.setView(dialog);
 

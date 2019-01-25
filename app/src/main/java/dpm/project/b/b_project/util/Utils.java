@@ -115,7 +115,7 @@ public class Utils {
         Calendar start = Calendar.getInstance();
         Calendar end = Calendar.getInstance();
 
-        if (salaryDay >= now.get(Calendar.DAY_OF_MONTH))
+        if (now.get(Calendar.DAY_OF_MONTH) >= salaryDay)
             end.add(Calendar.MONTH, +1);
         else start.add(Calendar.MONTH, -1);
 

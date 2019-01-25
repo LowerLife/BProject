@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@android:color/white">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="124dp"
-        android:background="#e6003e"/>
+        android:background="#e6003e" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/main_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="28dp"
         android:fontFamily="@font/anton"
-        android:layout_marginStart="32dp"
         android:text="@string/_1month"
         android:textColor="@android:color/white"
         android:textSize="26sp"
@@ -28,8 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/monthly_pay"
         android:fontFamily="@font/anton"
+        android:text="@string/monthly_pay"
         android:textColor="#e9e9e9"
         android:textSize="14sp"
         app:layout_constraintLeft_toLeftOf="@id/main_txt"
@@ -51,13 +51,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
-        android:textColor="@color/b_black"
-        android:textSize="28sp"
         android:fontFamily="@font/anton"
         android:gravity="center_vertical"
+        android:textColor="@color/b_black"
+        android:textSize="28sp"
         app:layout_constraintLeft_toLeftOf="@id/main_txt"
-        app:layout_constraintTop_toBottomOf="@id/main_time"
         app:layout_constraintRight_toRightOf="@id/main_pay_line"
+        app:layout_constraintTop_toBottomOf="@id/main_time"
         tools:text="423,369" />
 
     <View
@@ -117,6 +117,7 @@
         tools:text="스타벅스 아메리카노" />
 
     <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/main_buy_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -125,8 +126,15 @@
         android:textColor="#3e3e40"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toRightOf="@id/main_buy_main"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_pay_line" />
+
+    <android.support.constraint.Group
+        android:id="@+id/main_buy_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="main_buy_first,,main_buy_main,main_buy_end" />
 </android.support.constraint.ConstraintLayout>

@@ -218,7 +218,7 @@ public class InputInfoActivity extends AppCompatActivity
 
     @Override
     public void onSuccess() {
-        toast("님의 정보 저장완료!");
+//        toast("님의 정보 저장완료!");
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

@@ -3,6 +3,7 @@ package dpm.project.b.b_project.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,6 +27,11 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         mainViewPagerAdapter = new MainViewPagerAdapter(this);
         mainViewpager.setAdapter(mainViewPagerAdapter);
         mainViewpager.setPageTransformer(true, (view, position) -> {
@@ -37,7 +43,8 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.setting_menu_btn)
     public void onClickSettingMenu(){
-        startActivity(new Intent(this, MyPageActivity.class));
+        Toast.makeText(this, "마이페이지는 개발 중입니다 ㅠㅠ", Toast.LENGTH_SHORT).show();
+//        startActivity(new Intent(this, MyPageActivity.class));
     }
 
     @Override
