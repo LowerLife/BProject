@@ -108,8 +108,10 @@ public class MainViewPagerAdapter extends PagerAdapter {
                     buyText.setOnClickListener(view -> {
                         for(ItemData itemData : response.body()){
                             if(buyText.getText() == itemData.name){
-                                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(itemData.url)));
-                                break;
+                                if(itemData.url != null && !itemData.url.isEmpty()) {
+                                    context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(itemData.url)));
+                                    break;
+                                }
                             }
                         }
                     });

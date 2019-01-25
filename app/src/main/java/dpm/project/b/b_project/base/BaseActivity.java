@@ -16,6 +16,11 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("bproject",MODE_PRIVATE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         utils = new Utils(this);
     }
 }

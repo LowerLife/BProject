@@ -45,6 +45,11 @@ public class MyPageActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         sharedPreferences = getSharedPreferences("bproject", Context.MODE_PRIVATE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         myYearlySalary.setText(String.valueOf(sharedPreferences.getInt(MONTHLY_PAY, 0)*12));
     }
 
@@ -52,7 +57,7 @@ public class MyPageActivity extends AppCompatActivity {
     public void onClickEditSalary(){
         Intent intent = new Intent(this, EditInfoActivity.class);
         intent.putExtra("edit_key", 0);
-        startActivity(new Intent(this, EditInfoActivity.class));
+        startActivity(intent);
     }
 
     @OnClick(R.id.edit_enter_date)
