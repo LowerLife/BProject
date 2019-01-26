@@ -106,9 +106,9 @@ public class MainViewPagerAdapter extends PagerAdapter {
                     setBuyAnimate(response.body(), 0, buyText);
                     buyGroup.setVisibility(View.VISIBLE);
                     buyText.setOnClickListener(view -> {
-                        for(ItemData itemData : response.body()){
-                            if(buyText.getText() == itemData.name){
-                                if(itemData.url != null && !itemData.url.isEmpty()) {
+                        for (ItemData itemData : response.body()) {
+                            if (buyText.getText() == itemData.name) {
+                                if (itemData.url != null && !itemData.url.isEmpty()) {
                                     context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(itemData.url)));
                                     break;
                                 }
@@ -136,7 +136,7 @@ public class MainViewPagerAdapter extends PagerAdapter {
 
     private void setBuyAnimate(List<ItemData> items, int listPosition, TextView buyText) {
         buyText.animate().translationY((float) -buyText.getHeight()).alpha(0f).setDuration(1000)
-                .setStartDelay(2000).setInterpolator(new AccelerateDecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
+                .setStartDelay((listPosition == 0) ? 0 : 2000).setInterpolator(new AccelerateDecelerateInterpolator()).setListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
             }
