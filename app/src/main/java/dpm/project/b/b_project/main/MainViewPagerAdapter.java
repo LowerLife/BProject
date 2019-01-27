@@ -26,6 +26,7 @@ import dpm.project.b.b_project.R;
 import dpm.project.b.b_project.api.ApiManager;
 import dpm.project.b.b_project.api.BLifeApi;
 import dpm.project.b.b_project.api.ItemData;
+import dpm.project.b.b_project.util.Log;
 import dpm.project.b.b_project.util.Utils;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -102,7 +103,7 @@ public class MainViewPagerAdapter extends PagerAdapter {
         ApiManager.client().create(BLifeApi.class).getItem(pay, 30).enqueue(new Callback<List<ItemData>>() {
             @Override
             public void onResponse(@NonNull Call<List<ItemData>> call, @NonNull Response<List<ItemData>> response) {
-                if (response.body() != null) {
+                if (response.body() != null && !response.body().isEmpty()) {
                     setBuyAnimate(response.body(), 0, buyText);
                     buyGroup.setVisibility(View.VISIBLE);
                     buyText.setOnClickListener(view -> {
