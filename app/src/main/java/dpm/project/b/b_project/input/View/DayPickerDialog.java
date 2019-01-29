@@ -16,7 +16,7 @@ import dpm.project.b.b_project.R;
 public class DayPickerDialog extends DialogFragment {
 
     private PickerListener listener;
-    public Calendar cal = Calendar.getInstance();
+    //public Calendar cal = Calendar.getInstance();
 
     public void setListener(PickerListener listener) {
         this.listener = listener;
@@ -46,10 +46,11 @@ public class DayPickerDialog extends DialogFragment {
 
         //최대, 최소값 설정
         dayPicker.setMinValue(1);
-        dayPicker.setMaxValue(31);
+        //30일, 31일이 없는 달
+        dayPicker.setMaxValue(28);
         //숫자 클릭시 editText로 변경 제거
         dayPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-        dayPicker.setValue(cal.get(Calendar.DAY_OF_MONTH) + 1);
+        dayPicker.setValue(5);
 
         builder.setView(dialog);
 
