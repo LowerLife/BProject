@@ -94,6 +94,11 @@ public class InputInfoActivity extends AppCompatActivity
         String day = salaryDay.getText().toString();
         String time = workStartAndEndTime.getText().toString();
 
+        if(Integer.valueOf(salary)<10000){
+            toast("최소금액은 10000원입니당");
+            return;
+        }
+
         if(salary.equals("")){
             toast("너의 월급은?");
             return;

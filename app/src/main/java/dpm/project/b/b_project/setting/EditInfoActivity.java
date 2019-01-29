@@ -137,8 +137,14 @@ public class EditInfoActivity extends BaseActivity {
         switch (editKeyValue){
             case 0:
                 salary = editInfoEditText.getText().toString();
-                editor.putInt(MONTHLY_PAY, Integer.parseInt(salary));
-                break;
+                //최소금액 설정 -> 설정 금액 이하는 저장되지 않음
+                if(Integer.parseInt(salary)<10000){
+                    Toast.makeText(this, "최소금액은 10000원입니당", Toast.LENGTH_SHORT).show();
+                    break;
+                }else {
+                    editor.putInt(MONTHLY_PAY, Integer.parseInt(salary));
+                    break;
+                }
             case 1:
                 date = editInfoEditText2.getText().toString();
                 date = date.replace("월 ","").replace("일","");
@@ -158,5 +164,4 @@ public class EditInfoActivity extends BaseActivity {
         editor.commit();
         finish();
     }
-
 }

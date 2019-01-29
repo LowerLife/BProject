@@ -56,7 +56,7 @@ public class MonthDayPickerDialog extends DialogFragment {
         dayPicker.setMinValue(1);
         dayPicker.setMaxValue(31);
         dayPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-        dayPicker.setValue(cal.get(Calendar.DAY_OF_MONTH) + 1);
+        dayPicker.setValue(cal.get(Calendar.DAY_OF_MONTH));
 
         builder.setView(dialog);
 
