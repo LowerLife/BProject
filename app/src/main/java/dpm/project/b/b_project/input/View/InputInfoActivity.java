@@ -18,6 +18,7 @@ import dpm.project.b.b_project.R;
 import dpm.project.b.b_project.input.Presenter.InputInfoContract;
 import dpm.project.b.b_project.input.Presenter.InputInfoPresenter;
 import dpm.project.b.b_project.main.MainActivity;
+import dpm.project.b.b_project.util.PaymentTextWatcher;
 
 public class InputInfoActivity extends AppCompatActivity
         implements InputInfoContract.View{//, ObserverCallback{
@@ -69,6 +70,7 @@ public class InputInfoActivity extends AppCompatActivity
         viewObserver.add(isEnterDate);
         viewObserver.add(isSalaryDay);
         viewObserver.add(isQuitTime);*/
+        monthlySalary.addTextChangedListener(new PaymentTextWatcher(monthlySalary));
 
         presenter = new InputInfoPresenter();
         presenter.attachView(this);
@@ -89,7 +91,7 @@ public class InputInfoActivity extends AppCompatActivity
 
     @OnClick(R.id.input_info_complete_btn)
     public void onCompleteClick(){
-        String salary = monthlySalary.getText().toString();
+        String salary = monthlySalary.getText().toString().replace(",","");
         String date = enterDate.getText().toString();
         String day = salaryDay.getText().toString();
         String time = workStartAndEndTime.getText().toString();

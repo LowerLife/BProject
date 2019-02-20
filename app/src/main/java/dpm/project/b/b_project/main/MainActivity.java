@@ -3,7 +3,6 @@ package dpm.project.b.b_project.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

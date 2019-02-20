@@ -1,7 +1,12 @@
 package dpm.project.b.b_project.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatDialog;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -27,8 +32,10 @@ public class Utils {
     private String workTimeEndAt;
     private String enterDate;
     private int monthlyPay;
+    private Context context;
 
     public Utils(Context context) {
+        this.context = context;
         sharedPreferences = context.getSharedPreferences("bproject", Context.MODE_PRIVATE);
         workTimeParse = new SimpleDateFormat("HHmmss", Locale.KOREA);
         monthlyPay = sharedPreferences.getInt(MONTHLY_PAY, 2000000);
@@ -172,6 +179,25 @@ public class Utils {
         end.set(Calendar.SECOND, 0);
 
         return payFormat((long) ((monthlyPay * 12) * calculateRatio(now, start, end)));
+    }
+
+    public boolean isPaymentNotBLife(int monthlyPay){
+        return monthlyPay > 7500000;
+    }
+
+    public void dialogNotBlifeShow(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("당신의 월급은 B급인생이 아닙니다.\nB급인생이 되고싶다면 다시태어나세요.");
+        builder.setPositiveButton("다시입력", (dialogInterface, i) -> {
+            dialogInterface.dismiss();
+        });
+        builder.setNegativeButton("종료하기", (dialogInterface, i) -> {
+            if(context instanceof Activity){
+                ((Activity)context).finishAffinity();
+            }
+            dialogInterface.dismiss();
+        });
+        builder.show();
     }
 
     private String payFormat(long pay) {

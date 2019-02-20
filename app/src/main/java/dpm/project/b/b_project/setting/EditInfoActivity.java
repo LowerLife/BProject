@@ -2,15 +2,14 @@ package dpm.project.b.b_project.setting;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +20,7 @@ import dpm.project.b.b_project.input.View.DayPickerDialog;
 import dpm.project.b.b_project.input.View.MonthDayPickerDialog;
 import dpm.project.b.b_project.input.View.PickerListener;
 import dpm.project.b.b_project.input.View.WorkTimePickerDialog;
+import dpm.project.b.b_project.util.PaymentTextWatcher;
 import dpm.project.b.b_project.util.Utils;
 
 import static dpm.project.b.b_project.util.Const.ENTER_DATE;
@@ -59,6 +59,7 @@ public class EditInfoActivity extends BaseActivity {
             case 0:
                 editInfoEmoji.setImageResource(R.drawable.invalid_name);
                 editInfoTextView.setText(R.string.edit_monthly_salary_view);
+                editInfoEditText.addTextChangedListener(new PaymentTextWatcher(editInfoEditText));
                 break;
             case 1:
                 editInfoEditText.setVisibility(View.GONE);
@@ -128,34 +129,34 @@ public class EditInfoActivity extends BaseActivity {
 
     @OnClick(R.id.edit_info_ok_btn)
     public void onClickOkBtn(){
-        String salary = "";
-        String date = "";
-        String day = "";
-        String time = "";
         SharedPreferences.Editor editor = Utils.sharedPreferences.edit();
 
         switch (editKeyValue){
             case 0:
-                salary = editInfoEditText.getText().toString();
-                editor.putInt(MONTHLY_PAY, Integer.parseInt(salary));
+                String salary = editInfoEditText.getText().toString().replace(",","");
+                int monthlyPay = Integer.parseInt(salary);
+                if (utils.isPaymentNotBLife(monthlyPay)){
+                    utils.dialogNotBlifeShow();
+                    return;
+                }
+                editor.putInt(MONTHLY_PAY, monthlyPay);
                 break;
             case 1:
-                date = editInfoEditText2.getText().toString();
+                String date = editInfoEditText2.getText().toString();
                 date = date.replace("월 ","").replace("일","");
                 editor.putString(ENTER_DATE, date);
                 break;
             case 2:
-                day = editInfoEditText2.getText().toString();
-                day = day.replace("일","");
+                String day = editInfoEditText2.getText().toString().replace("일","");
                 editor.putString(SALARY_DAY, day);
                 break;
             case 3:
-                time = editInfoEditText2.getText().toString();
+                String time = editInfoEditText2.getText().toString();
                 editor.putString(WORK_START_AND_END_AT, time);
                 break;
             default:
         }
-        editor.commit();
+        editor.apply();
         finish();
     }
 
