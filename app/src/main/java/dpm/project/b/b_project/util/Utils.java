@@ -2,11 +2,8 @@ package dpm.project.b.b_project.util;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatDialog;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -17,6 +14,8 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
+
+import dpm.project.b.b_project.R;
 
 import static dpm.project.b.b_project.util.Const.MONTHLY_PAY;
 import static dpm.project.b.b_project.util.Const.SALARY_DAY;
@@ -181,19 +180,19 @@ public class Utils {
         return payFormat((long) ((monthlyPay * 12) * calculateRatio(now, start, end)));
     }
 
-    public boolean isPaymentNotBLife(int monthlyPay){
+    public boolean isPaymentNotBLife(int monthlyPay) {
         return monthlyPay > 7500000;
     }
 
-    public void dialogNotBlifeShow(){
+    public void dialogNotBlifeShow() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("당신의 월급은 B급인생이 아닙니다.\nB급인생이 되고싶다면 다시태어나세요.");
-        builder.setPositiveButton("다시입력", (dialogInterface, i) -> {
+        builder.setMessage(context.getString(R.string.dialog_not_b));
+        builder.setPositiveButton(context.getString(R.string.dialog_reenter), (dialogInterface, i) -> {
             dialogInterface.dismiss();
         });
-        builder.setNegativeButton("종료하기", (dialogInterface, i) -> {
-            if(context instanceof Activity){
-                ((Activity)context).finishAffinity();
+        builder.setNegativeButton(context.getString(R.string.dialog_finish), (dialogInterface, i) -> {
+            if (context instanceof Activity) {
+                ((Activity) context).finishAffinity();
             }
             dialogInterface.dismiss();
         });

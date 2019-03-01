@@ -24,4 +24,7 @@
     <string name="edit_work_time_view">출근하면 언제나\n퇴근을 하고 싶지\n1초 1초가 중요햇!</string>
     <string name="edit_info_edit_text_view">그럼당장 / 변경해요</string>
 
+    <string name="dialog_not_b">경보경보 A급 바이러스가 걸렸다\n즉시 앱을 나가주시길 바랍니다!!</string>
+    <string name="dialog_reenter">다시입력</string>
+    <string name="dialog_finish">종료하기</string>
 </resources>
